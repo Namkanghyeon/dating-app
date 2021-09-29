@@ -3,30 +3,33 @@ import { authService, dbService } from "fbase";
 import { useHistory } from "react-router";
 import {
     collection,
-    getDocs,
+    onSnapshot,
     orderBy,
     query,
     where,
 } from "@firebase/firestore";
 import { updateProfile } from "@firebase/auth";
+import Tweet from "components/Tweet";
 
 const Profile = ({ userObj, refreshUser }) => {
     const history = useHistory();
     const [newDisplayName, setNewDisplayName] = useState(userObj.displayName);
+    const [myTweets, setMyTweets] = useState([]);
 
     useEffect(() => {
-        getMyTweets();
-    }, []);
-
-    const getMyTweets = async () => {
         const q = query(
             collection(dbService, "tweets"),
             where("creatorId", "==", userObj.uid),
             orderBy("createdAt", "desc")
         );
-        const tweets = await getDocs(q);
-        console.log(tweets.docs.map((doc) => doc.data()));
-    };
+        onSnapshot(q, (snapshot) => {
+            const tweetArray = snapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data(),
+            }));
+            setMyTweets(tweetArray);
+        });
+    }, []);
 
     const onLogOutClick = () => {
         console.log("logout");
@@ -53,18 +56,37 @@ const Profile = ({ userObj, refreshUser }) => {
     };
 
     return (
-        <>
-            <form onSubmit={onSubmit}>
+        <div className="container">
+            <form onSubmit={onSubmit} className="profileForm">
                 <input
-                    onChange={onChange}
                     type="text"
+                    className="formInput"
+                    onChange={onChange}
                     placeholder="Display name"
                     value={newDisplayName}
+                    autoFocus
                 />
-                <input type="submit" value="Update Profile" />
+                <input
+                    type="submit"
+                    value="Update Profile"
+                    className="formBtn"
+                    style={{
+                        marginTop: 10,
+                    }}
+                />
             </form>
-            <button onClick={onLogOutClick}>Log Out</button>
-        </>
+            <span className="formBtn cancelBtn logOut" onClick={onLogOutClick}>
+                Log Out
+            </span>
+            <h2>My Tweets</h2>
+            {myTweets.map((tweet) => (
+                <Tweet
+                    key={tweet.id}
+                    tweetObj={tweet}
+                    isOwner={tweet.creatorId === userObj.uid}
+                />
+            ))}
+        </div>
     );
 };
 
