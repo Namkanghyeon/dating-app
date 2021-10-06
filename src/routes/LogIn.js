@@ -1,15 +1,13 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { authService } from "fbase";
-import {
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-} from "@firebase/auth";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { signInWithEmailAndPassword } from "@firebase/auth";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBell } from "@fortawesome/free-solid-svg-icons";
 
-const AuthForm = () => {
+const LogIn = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [newAccount, setNewAccount] = useState(true);
     const [error, setError] = useState("");
 
     const onChange = (event) => {
@@ -22,38 +20,32 @@ const AuthForm = () => {
             setPassword(value);
         }
     };
+
     const onSubmit = async (event) => {
-        event.preventDefault(); // 새로고침되지 않도록 하기 위해
+        event.preventDefault();
         try {
-            let data;
-            if (newAccount) {
-                data = await createUserWithEmailAndPassword(
-                    authService,
-                    email,
-                    password
-                );
-            } else {
-                data = await signInWithEmailAndPassword(
-                    authService,
-                    email,
-                    password
-                );
-            }
-            console.log(data);
+            await signInWithEmailAndPassword(authService, email, password);
         } catch (error) {
             setError(error.message);
         }
     };
 
-    const toggleAccount = () => setNewAccount((prev) => !prev);
+    useEffect(() => {
+        return () => {
+            setEmail("");
+            setPassword("");
+        };
+    }, []);
 
     return (
-        <>
-            <form>
-                <button>
-                    <Link to="/makeprofile">회원가입</Link>
-                </button>
-            </form>
+        <div className="authContainer">
+            <FontAwesomeIcon
+                icon={faBell}
+                color={"#FF0000"}
+                size="5x"
+                style={{ marginBottom: 30 }}
+            />
+            <h2>Log In</h2>
             <form onSubmit={onSubmit} className="container">
                 <input
                     name="email"
@@ -75,20 +67,17 @@ const AuthForm = () => {
                 />
                 <input
                     type="submit"
-                    value={newAccount ? "Create Account" : "Log In"}
+                    value={"로그인"}
                     className="authInput authSubmit"
                 />
-                {/* <Link to="/makeprofile" style={{ marginRight: 10 }}>
-                        회원가입
-                    </Link> */}
                 {error && <span className="authError">{error}</span>}
             </form>
-
-            <span onClick={toggleAccount} className="authSwitch">
-                {newAccount ? "Sign in" : "Create Account"}
-            </span>
-        </>
+            <form>
+                <button>
+                    <Link to="/signup">회원가입</Link>
+                </button>
+            </form>
+        </div>
     );
 };
-
-export default AuthForm;
+export default LogIn;

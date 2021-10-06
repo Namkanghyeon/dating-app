@@ -62,29 +62,28 @@ form {
     color: white;
     border-radius: 20px;
     background-color: #04aaff;
-    cursor: pointer;
 }
 
 .cancelBtn {
     cursor: pointer;
-    background-color: tomato;
+    background-color: red;
 }
 
 /* Profile Page */
 
 .profileForm {
     border-bottom: 1px solid rgba(255, 255, 255, 0.9);
-    padding-bottom: 30px;
+    padding-bottom: 20px;
     width: 100%;
     display: flex;
     flex-direction: column;
 }
 
 .logOut {
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
-/* Nwitter Factory */
+/* Twitter Factory */
 
 .factoryForm {
     display: flex;
@@ -229,10 +228,10 @@ form {
     cursor: pointer;
     border-radius: 20px;
     border: none;
-    padding: 10px 0px;
-    font-size: 12px;
+    padding: 10px 10px;
+    font-size: 16px;
     text-align: center;
-    width: 150px;
+    width: 320px;
     background: white;
     cursor: pointer;
 }

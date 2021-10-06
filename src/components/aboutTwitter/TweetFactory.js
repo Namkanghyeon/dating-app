@@ -9,7 +9,7 @@ import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 const TweetFactory = ({ userObj }) => {
     const [tweet, setTweet] = useState("");
     const [attachment, setAttachment] = useState("");
-    const fileInput = useRef();
+    const fileInput = useRef(true);
 
     const onSubmit = async (event) => {
         if (tweet === "") {
@@ -88,7 +88,7 @@ const TweetFactory = ({ userObj }) => {
                     className="factoryInput__arrow"
                 />
             </div>
-            <label for="attach-file" className="factoryInput__label">
+            <label htmlFor="attach-file" className="factoryInput__label">
                 <span>Add photos</span>
                 <FontAwesomeIcon icon={faPlus} />
             </label>

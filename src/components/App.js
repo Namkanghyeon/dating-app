@@ -1,43 +1,63 @@
 import React, { useState, useEffect } from "react";
 import AppRouter from "components/Router";
-import { authService } from "fbase";
+import { authService, dbService } from "fbase";
+import { setPersistence, browserSessionPersistence } from "@firebase/auth";
+import { doc, getDoc } from "@firebase/firestore";
 
 function App() {
-    const [isIniting, setIsIniting] = useState(false);
+    const [ready, setReady] = useState(false);
     const [userObj, setUserObj] = useState(null);
+    const [profileObj, setProfileObj] = useState(null);
+
+    const callProfile = async (user) => {
+        const docRef = doc(dbService, "profiles", user.uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            setProfileObj(docSnap.data());
+        }
+    };
 
     useEffect(() => {
-        authService.onAuthStateChanged((user) => {
+        setPersistence(authService, browserSessionPersistence);
+        authService.onAuthStateChanged(async (user) => {
             if (user) {
                 setUserObj({
                     displayName: user.displayName,
                     uid: user.uid,
                 });
+                callProfile(user);
             } else {
                 setUserObj(null);
+                setProfileObj(null);
             }
-            setIsIniting(true);
+            setReady(true);
         });
     }, []);
 
-    const refreshUser = () => {
+    const refresh = async () => {
+        console.log("refreshing...");
         const user = authService.currentUser;
         setUserObj({
             displayName: user.displayName,
             uid: user.uid,
         });
+        const docRef = doc(dbService, "profiles", user.uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            setProfileObj(docSnap.data());
+        }
     };
 
     return (
         <>
-            {isIniting ? (
+            {ready ? (
                 <AppRouter
-                    refreshUser={refreshUser}
-                    isLoggedIn={Boolean(userObj)}
                     userObj={userObj}
+                    profileObj={profileObj}
+                    refresh={refresh}
                 />
             ) : (
-                "Initializing..."
+                "loading..."
             )}
         </>
     );
