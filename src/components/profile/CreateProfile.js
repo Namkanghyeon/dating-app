@@ -1,25 +1,13 @@
 import React, { useState, useRef } from "react";
 import { dbService, storageService } from "fbase";
-import { v4 as uuidv4 } from "uuid";
-import { useHistory } from "react-router";
-import {} from "@firebase/auth";
+import { v4 } from "uuid";
 import { doc, setDoc } from "@firebase/firestore";
-import {
-    ref,
-    uploadString,
-    getDownloadURL,
-    deleteObject,
-} from "@firebase/storage";
+import { ref, uploadString, getDownloadURL } from "@firebase/storage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faPlus,
-    faTimes,
-    faTrash,
-    faPencilAlt,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Redirect } from "react-router";
 
-const MakeProfile = ({ userCred, refresh }) => {
+const CreateProfile = ({ userCred, reload }) => {
     const [name, setName] = useState("");
     const [gender, setGender] = useState("");
     const [age, setAge] = useState("20");
@@ -38,11 +26,11 @@ const MakeProfile = ({ userCred, refresh }) => {
         if (attachment !== "") {
             const attachmentRef = ref(
                 storageService,
-                `${userCred.user.uid}/${uuidv4()}`
+                `${userCred.user.uid}/${v4()}`
             );
             const response = await uploadString(
                 attachmentRef,
-                attachment /*string*/,
+                attachment,
                 "data_url"
             );
             attachmentUrl = await getDownloadURL(response.ref);
@@ -58,11 +46,11 @@ const MakeProfile = ({ userCred, refresh }) => {
             school: school,
             introduce: introduce,
             kakaoTalkId: kakaoTalkId,
-            // 매칭 관련
-            liking: [],
-            liked: [],
-            matchedPartners: [],
             attachmentUrl: attachmentUrl,
+            // 매칭 관련
+            liking: [], // for female
+            liked: [], // for male
+            matchedPartners: [],
         };
 
         await setDoc(
@@ -71,31 +59,40 @@ const MakeProfile = ({ userCred, refresh }) => {
         );
         setAttachment("");
         fileInput.current.value = "";
-        refresh();
+        reload();
         setMakeProfileComplete(true);
     };
 
-    const onNameChange = (event) => {
-        setName(event.target.value);
+    const onChange = (event) => {
+        const {
+            target: { name, value },
+        } = event;
+        switch (name) {
+            case "name":
+                setName(value);
+                break;
+            case "gender":
+                setGender(value);
+                break;
+            case "age":
+                setAge(value);
+                break;
+            case "height":
+                setHeight(value);
+                break;
+            case "school":
+                setSchool(value);
+                break;
+            case "introduce":
+                setIntroduce(value);
+                break;
+            case "kakaoTalkId":
+                setKakaoTalkId(value);
+                break;
+            default:
+        }
     };
-    const onGenderChange = (event) => {
-        setGender(event.target.value);
-    };
-    const onAgeChange = (event) => {
-        setAge(event.target.value);
-    };
-    const onHeightChange = (event) => {
-        setHeight(event.target.value);
-    };
-    const onSchoolChange = (event) => {
-        setSchool(event.target.value);
-    };
-    const onIntroduceChange = (event) => {
-        setIntroduce(event.target.value);
-    };
-    const onKakaoTaleIdChange = (event) => {
-        setKakaoTalkId(event.target.value);
-    };
+
     const onPhotoChange = (event) => {
         const {
             target: { files },
@@ -124,7 +121,7 @@ const MakeProfile = ({ userCred, refresh }) => {
             <form onSubmit={onSubmit}>
                 <div>
                     <h3>이름</h3>
-                    <input type="text" onChange={onNameChange} />
+                    <input type="text" name="name" onChange={onChange} />
                 </div>
                 <div>
                     <h3>성별</h3>
@@ -132,20 +129,20 @@ const MakeProfile = ({ userCred, refresh }) => {
                         type="radio"
                         value="Male"
                         name="gender"
-                        onChange={onGenderChange}
+                        onChange={onChange}
                     />{" "}
                     남자
                     <input
                         type="radio"
                         value="Female"
                         name="gender"
-                        onChange={onGenderChange}
+                        onChange={onChange}
                     />{" "}
                     여자
                 </div>
                 <div>
                     <h3>나이</h3>
-                    <select onChange={onAgeChange}>
+                    <select name="age" onChange={onChange}>
                         <option value="20"> 20 </option>
                         <option value="21"> 21 </option>
                         <option value="22"> 22 </option>
@@ -160,7 +157,7 @@ const MakeProfile = ({ userCred, refresh }) => {
                 </div>
                 <div>
                     <h3>키</h3>
-                    <select onChange={onHeightChange}>
+                    <select name="height" onChange={onChange}>
                         <option value="-150"> 150 미만 </option>
                         <option value="150-155"> 150 이상 155 미만 </option>
                         <option value="155-160"> 155 이상 160 미만 </option>
@@ -175,7 +172,7 @@ const MakeProfile = ({ userCred, refresh }) => {
                 </div>
                 <div>
                     <h3>학교</h3>
-                    <select onChange={onSchoolChange}>
+                    <select name="school" onChange={onChange}>
                         <option value="한양대"> 한양대 </option>
                         <option value="한양여대"> 한양여대 </option>
                     </select>
@@ -184,16 +181,19 @@ const MakeProfile = ({ userCred, refresh }) => {
                     <h3>자기소개</h3>
                     <input
                         type="text"
-                        placeholder="관심사, 취미, 좋아하는 것, 연애 가치관 등을 적어주세요. 성의있게 작성할 수록 매칭 확률도 높아집니다."
-                        onChange={onIntroduceChange}
+                        name="introduce"
+                        placeholder="관심사, 취미, 좋아하는 것, 연애 가치관 등을 적어주세요. 성의있게 작성할 수록 매칭 확률도 높아지겠죠?"
+                        onChange={onChange}
+                        //style={{ height: "300px" }}
                     />
                 </div>
                 <div>
                     <h3>카카오톡 아이디</h3>
                     <input
                         type="text"
+                        name="kakaoTalkId"
                         placeholder="정확하게 입력하였는지 다시 한 번 확인해주세요"
-                        onChange={onKakaoTaleIdChange}
+                        onChange={onChange}
                     />
                 </div>
                 <div>
@@ -240,4 +240,4 @@ const MakeProfile = ({ userCred, refresh }) => {
     );
 };
 
-export default MakeProfile;
+export default CreateProfile;

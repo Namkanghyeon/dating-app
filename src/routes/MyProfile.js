@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { authService } from "fbase";
 import { useHistory } from "react-router";
-import ProfileForm from "components/ProfileForm";
-import DeleteAccount from "./DeleteAccount";
+import EditProfile from "components/profile/EditProfile";
+import DeleteAccount from "../components/profile/DeleteAccount";
+import EditPassword from "components/profile/EditPassword";
 
-const MyProfile = ({ userObj, profileObj }) => {
+const MyProfile = ({ userObj, profileObj, reload }) => {
     const history = useHistory();
+    const [passwordMode, setPasswordMode] = useState(false);
     const [deleteMode, setDeleteMode] = useState(false);
 
     const onDeleteClick = () => {
+        console.log("delete account");
         setDeleteMode(true);
     };
 
@@ -18,13 +21,28 @@ const MyProfile = ({ userObj, profileObj }) => {
         history.push("/");
     };
 
+    const onPasswordClick = () => {
+        console.log("change password");
+        setPasswordMode(true);
+    };
+
     return (
         <>
-            {!deleteMode && (
+            {!deleteMode && !passwordMode && (
                 <div>
-                    <ProfileForm userObj={userObj} profileObj={profileObj} />
-                    <button onClick={onLogOutClick}> Log Out</button>
+                    <EditProfile
+                        userObj={userObj}
+                        profileObj={profileObj}
+                        reload={reload}
+                    />
+                    <button onClick={onLogOutClick}>로그아웃</button>
+                    <button onClick={onPasswordClick}>비밀번호 변경</button>
                     <button onClick={onDeleteClick}>회원 탈퇴</button>
+                </div>
+            )}
+            {passwordMode && (
+                <div>
+                    <EditPassword />
                 </div>
             )}
             {deleteMode && (

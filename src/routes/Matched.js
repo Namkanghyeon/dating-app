@@ -9,14 +9,14 @@ import {
     doc,
     updateDoc,
 } from "@firebase/firestore";
-import FemaleProfile from "components/aboutProfile/FemaleProfile";
-import MaleProfile from "components/aboutProfile/MaleProfile";
+import FemaleProfile from "components/homepage/FemaleProfile";
+import MaleProfile from "components/homepage/MaleProfile";
 
-const Matched = ({ userObj, profileObj, refresh }) => {
+const Matched = ({ userObj, profileObj, reload }) => {
     const [matches, setMatches] = useState([]);
 
     useEffect(() => {
-        refresh();
+        reload();
         const myMatchedPartners = profileObj.matchedPartners;
         console.log("my match", myMatchedPartners);
         let myMatchedPartnersId = [];

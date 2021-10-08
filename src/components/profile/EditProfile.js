@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { dbService } from "fbase";
 import { doc, updateDoc } from "@firebase/firestore";
+import { Redirect } from "react-router";
 
-const ProfileForm = ({ userObj, profileObj }) => {
+const EditProfile = ({ userObj, profileObj, reload }) => {
     const [name, setName] = useState("");
     const [introduce, setIntroduce] = useState("");
     const [kakaoTalkId, setKakaoTalkId] = useState("");
+    const [done, setDone] = useState(false);
 
     useEffect(() => {
         setName(profileObj.name);
         setIntroduce(profileObj.introduce);
+        setKakaoTalkId(profileObj.kakaoTalkId);
     }, []);
 
     const onSubmit = async (event) => {
@@ -21,16 +24,21 @@ const ProfileForm = ({ userObj, profileObj }) => {
         };
         const targetDoc = doc(dbService, "profiles", userObj.uid);
         await updateDoc(targetDoc, newProfileObj);
+        reload();
+        setDone(true);
     };
 
-    const onNameChange = (event) => {
-        setName(event.target.value);
-    };
-    const onIntroduceChange = (event) => {
-        setIntroduce(event.target.value);
-    };
-    const onKakaoTaleIdChange = (event) => {
-        setKakaoTalkId(event.target.value);
+    const onChange = (event) => {
+        const {
+            target: { name, value },
+        } = event;
+        if (name === "name") {
+            setName(value);
+        } else if (name === "introduce") {
+            setIntroduce(value);
+        } else {
+            setKakaoTalkId(value);
+        }
     };
 
     return (
@@ -41,30 +49,35 @@ const ProfileForm = ({ userObj, profileObj }) => {
                     <h3>이름</h3>
                     <input
                         type="text"
-                        value={profileObj.name}
-                        onChange={onNameChange}
+                        name="name"
+                        value={name}
+                        onChange={onChange}
                     />
                 </div>
                 <div>
                     <h3>자기소개</h3>
                     <input
                         type="text"
-                        value={profileObj.introduce}
-                        onChange={onIntroduceChange}
+                        name="introduce"
+                        value={introduce}
+                        onChange={onChange}
+                        //style={{ height: "300px" }}
                     />
                 </div>
                 <div>
                     <h3>카카오톡 아이디</h3>
                     <input
                         type="text"
-                        value={profileObj.kakaoTalkId}
-                        onChange={onKakaoTaleIdChange}
+                        name="kakaoTalkId"
+                        value={kakaoTalkId}
+                        onChange={onChange}
                     />
                 </div>
                 <input type="submit" value="수정" />
             </form>
+            {done && <Redirect to="/" />}
         </div>
     );
 };
 
-export default ProfileForm;
+export default EditProfile;

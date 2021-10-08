@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { authService } from "fbase";
 import { createUserWithEmailAndPassword } from "@firebase/auth";
-import MakeProfile from "components/MakeProfile";
+import CreateProfile from "components/profile/CreateProfile";
 
-const SignUp = ({ refresh }) => {
+const SignUp = ({ reload }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    // const [passwordConfirm, setPasswordConfirm] = useState("");
     const [error, setError] = useState("");
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userCred, setUserCred] = useState(null);
@@ -19,6 +20,9 @@ const SignUp = ({ refresh }) => {
         } else if (name === "password") {
             setPassword(value);
         }
+        // else if (name === "passwordConfirm") {
+        //     setPasswordConfirm(value);
+        // }
     };
 
     const onSubmit = async (event) => {
@@ -46,7 +50,7 @@ const SignUp = ({ refresh }) => {
                         type="email"
                         placeholder="이메일"
                         required
-                        value={email}
+                        //value={email}
                         onChange={onChange}
                         className="authInput"
                     />
@@ -55,10 +59,19 @@ const SignUp = ({ refresh }) => {
                         type="password"
                         placeholder="비밀번호"
                         required
-                        value={password}
+                        //value={password}
                         onChange={onChange}
                         className="authInput"
                     />
+                    {/* <input
+                        name="passwordConfirm"
+                        type="password"
+                        placeholder="비밀번호 확인"
+                        required
+                        //value={passwordConfirm}
+                        onChange={onChange}
+                        className="authInput"
+                    /> */}
                     <input
                         type="submit"
                         value={"회원가입"}
@@ -68,7 +81,7 @@ const SignUp = ({ refresh }) => {
                 </form>
             )}
             {isLoggedIn && (
-                <MakeProfile userCred={userCred} refresh={refresh} />
+                <CreateProfile userCred={userCred} reload={reload} />
             )}
         </>
     );

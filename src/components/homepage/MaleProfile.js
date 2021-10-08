@@ -1,15 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { dbService } from "fbase";
 import { doc, updateDoc, addDoc, collection } from "@firebase/firestore";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import Congratulation from "components/Congratulation";
 
 const MaleProfile = ({ userObj, profileObj, maleProfileObj, matchMode }) => {
     const [detailMode, setDetailMode] = useState(false);
     const [like, setLike] = useState(false);
     const [ok, setOk] = useState(false);
     const [yourOk, setYourOk] = useState(false);
+
+    useEffect(() => {
+        const myPartners = profileObj.matchedPartners;
+        myPartners.map((myPartner) => {
+            if (myPartner.id === maleProfileObj.id) {
+                if (myPartner.ok) {
+                    setOk(true);
+                }
+            }
+        });
+        const yourPartners = maleProfileObj.matchedPartners;
+        yourPartners.map((yourPartner) => {
+            if (yourPartner.id === userObj.uid) {
+                if (yourPartner.ok) {
+                    setYourOk(true);
+                }
+            }
+        });
+    }, []);
 
     const toggleDetailMode = () => {
         setDetailMode((prev) => !prev);
@@ -43,14 +61,6 @@ const MaleProfile = ({ userObj, profileObj, maleProfileObj, matchMode }) => {
             matchedPartners: newMatchedPartners,
         });
         setOk(true);
-        const yourPartners = maleProfileObj.matchedPartners;
-        yourPartners.map((yourPartner) => {
-            if (yourPartner.id === userObj.uid) {
-                if (yourPartner.ok) {
-                    setYourOk(true);
-                }
-            }
-        });
     };
 
     return (
@@ -82,12 +92,17 @@ const MaleProfile = ({ userObj, profileObj, maleProfileObj, matchMode }) => {
                                 ) : (
                                     <>
                                         {yourOk ? (
-                                            <Congratulation
-                                                name={maleProfileObj.name}
-                                                kakaoTalkId={
-                                                    maleProfileObj.kakaoTalkId
-                                                }
-                                            />
+                                            <>
+                                                <h3>
+                                                    축하드립니다. 좋은 인연
+                                                    되시기 바랍니다.
+                                                </h3>
+                                                <h4>
+                                                    {maleProfileObj.name}님의
+                                                    카카오톡 ID:{" "}
+                                                    {maleProfileObj.kakaoTalkId}
+                                                </h4>
+                                            </>
                                         ) : (
                                             <h5>
                                                 상대방도 수락 시 서로의 카카오톡

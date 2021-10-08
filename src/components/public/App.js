@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import AppRouter from "components/Router";
+import AppRouter from "components/public/Router";
 import { authService, dbService } from "fbase";
 import { setPersistence, browserSessionPersistence } from "@firebase/auth";
 import { doc, getDoc } from "@firebase/firestore";
@@ -34,8 +34,8 @@ function App() {
         });
     }, []);
 
-    const refresh = async () => {
-        console.log("refreshing...");
+    const reload = async () => {
+        console.log("reloading...");
         const user = authService.currentUser;
         setUserObj({
             displayName: user.displayName,
@@ -54,7 +54,7 @@ function App() {
                 <AppRouter
                     userObj={userObj}
                     profileObj={profileObj}
-                    refresh={refresh}
+                    reload={reload}
                 />
             ) : (
                 "loading..."

@@ -1,25 +1,11 @@
-import React, { useEffect } from "react";
-import FemaleHome from "components/HomePages/FemaleHome";
-import MaleHome from "components/HomePages/MaleHome";
-const Home = ({ userObj, profileObj }) => {
-    useEffect(() => {
-        // const q = query(
-        //     collection(dbService, "tweets"),
-        //     orderBy("createdAt", "desc")
-        // );
-        // onSnapshot(q, (snapshot) => {
-        //     const tweetArray = snapshot.docs.map((doc) => ({
-        //         id: doc.id,
-        //         ...doc.data(),
-        //     }));
-        //     setTweets(tweetArray);
-        // });
-    }, []);
+import React from "react";
+import FemaleHome from "components/homepage/FemaleHome";
+import MaleHome from "components/homepage/MaleHome";
 
+const Home = ({ userObj, profileObj }) => {
     return (
         <>
             <div className="container">
-                {/* <FemaleHome userObj={userObj} /> */}
                 {profileObj ? (
                     profileObj.gender === "Female" ? (
                         <FemaleHome userObj={userObj} profileObj={profileObj} />
@@ -29,17 +15,6 @@ const Home = ({ userObj, profileObj }) => {
                 ) : (
                     "loading..."
                 )}
-
-                {/* <TweetFactory userObj={userObj} />
-                <div style={{ marginTop: 30 }}>
-                    {tweets.map((tweet) => (
-                        <Tweet
-                            key={tweet.id}
-                            tweetObj={tweet}
-                            isOwner={tweet.creatorId === userObj.uid}
-                        />
-                    ))}
-                </div> */}
             </div>
         </>
     );
