@@ -6,7 +6,7 @@ import CreateProfile from "components/profile/CreateProfile";
 const SignUp = ({ reload }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    // const [passwordConfirm, setPasswordConfirm] = useState("");
+    const [passwordConfirm, setPasswordConfirm] = useState("");
     const [error, setError] = useState("");
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userCred, setUserCred] = useState(null);
@@ -19,25 +19,30 @@ const SignUp = ({ reload }) => {
             setEmail(value);
         } else if (name === "password") {
             setPassword(value);
+        } else if (name === "passwordConfirm") {
+            setPasswordConfirm(value);
         }
-        // else if (name === "passwordConfirm") {
-        //     setPasswordConfirm(value);
-        // }
     };
 
     const onSubmit = async (event) => {
         event.preventDefault();
-        try {
-            await createUserWithEmailAndPassword(
-                authService,
-                email,
-                password
-            ).then((cred) => {
-                setUserCred(cred);
-            });
-            setIsLoggedIn(true);
-        } catch (error) {
-            setError(error.message);
+        if (password === passwordConfirm) {
+            try {
+                await createUserWithEmailAndPassword(
+                    authService,
+                    email,
+                    password
+                ).then((cred) => {
+                    setUserCred(cred);
+                });
+                setIsLoggedIn(true);
+            } catch (error) {
+                setError(error.message);
+            }
+        } else {
+            alert("비밀번호를 다시 확인해주세요");
+            setPassword("");
+            setPasswordConfirm("");
         }
     };
 
@@ -50,7 +55,7 @@ const SignUp = ({ reload }) => {
                         type="email"
                         placeholder="이메일"
                         required
-                        //value={email}
+                        value={email}
                         onChange={onChange}
                         className="authInput"
                     />
@@ -59,19 +64,19 @@ const SignUp = ({ reload }) => {
                         type="password"
                         placeholder="비밀번호"
                         required
-                        //value={password}
+                        value={password}
                         onChange={onChange}
                         className="authInput"
                     />
-                    {/* <input
+                    <input
                         name="passwordConfirm"
                         type="password"
                         placeholder="비밀번호 확인"
                         required
-                        //value={passwordConfirm}
+                        value={passwordConfirm}
                         onChange={onChange}
                         className="authInput"
-                    /> */}
+                    />
                     <input
                         type="submit"
                         value={"회원가입"}

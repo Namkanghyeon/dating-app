@@ -1,0 +1,131 @@
+.profileComponents {
+    text-align: center;
+}
+
+.profileTitle {
+    display: flex;
+    justify-content: center;
+    background-color: #00ff77;
+    color: #ffffff;
+    font-size: 24px;
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    cursor: default;
+}
+
+.profileSubtitle {
+    text-align: center;
+    background-color: #ffffff;
+    border: #00ff77 3px solid;
+    color: #000000;
+    font-size: 16px;
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    cursor: default;
+}
+
+.profileInput {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: 1px solid #00ff77;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: black;
+    align-items: center;
+}
+
+.profileGender {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+input[type="radio"] {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    border-radius: 10px;
+    background-color: white;
+    border: #00ff77 3px solid;
+}
+input[type="radio"]:checked {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    border-radius: 10px;
+    background-color: #00ff77;
+    border: #00ff77 3px solid;
+}
+
+.profileIntroduce {
+    border: 1px solid #00ff77;
+    font-size: 12px;
+    padding: 5px;
+    outline: none;
+    width: 100%;
+    height: 300px;
+}
+
+.profileLabel span {
+    /*사진 변경 버튼*/
+    margin-right: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.profileAttachment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profileAttachment img {
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+}
+
+.profileButton {
+    text-align: center;
+    background-color: #00ff77;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.profileButtons {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.profileButtonsChild {
+    color: #00ff77;
+    background-color: white;
+    border: #00ff77 3px solid;
+    margin: 5px;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+    border-radius: 10px;
+    padding: 4px;
+    text-align: center;
+}
+
+.profileButtonsChildChild {
+    flex-direction: column;
+    align-items: center;
+    max-width: 80px;
+}

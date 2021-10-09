@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { authService } from "fbase";
 import { useHistory } from "react-router";
+import DeleteAccount from "components/profile/DeleteAccount";
 import EditProfile from "components/profile/EditProfile";
-import DeleteAccount from "../components/profile/DeleteAccount";
 import EditPassword from "components/profile/EditPassword";
 
 const MyProfile = ({ userObj, profileObj, reload }) => {
@@ -27,17 +27,37 @@ const MyProfile = ({ userObj, profileObj, reload }) => {
     };
 
     return (
-        <>
+        <div>
             {!deleteMode && !passwordMode && (
-                <div>
+                <div className="container">
                     <EditProfile
                         userObj={userObj}
                         profileObj={profileObj}
                         reload={reload}
                     />
-                    <button onClick={onLogOutClick}>로그아웃</button>
-                    <button onClick={onPasswordClick}>비밀번호 변경</button>
-                    <button onClick={onDeleteClick}>회원 탈퇴</button>
+                    <div className="profileButtons">
+                        <span className="profileButtonsChild">
+                            <input
+                                onClick={onPasswordClick}
+                                value="비밀번호 변경"
+                                className="profileButtonsChildChild"
+                            />
+                        </span>
+                        <span className="profileButtonsChild">
+                            <input
+                                onClick={onLogOutClick}
+                                value="로그아웃"
+                                className="profileButtonsChildChild"
+                            />
+                        </span>
+                        <span className="profileButtonsChild">
+                            <input
+                                onClick={onDeleteClick}
+                                value="회원 탈퇴"
+                                className="profileButtonsChildChild"
+                            />
+                        </span>
+                    </div>
                 </div>
             )}
             {passwordMode && (
@@ -47,10 +67,10 @@ const MyProfile = ({ userObj, profileObj, reload }) => {
             )}
             {deleteMode && (
                 <div>
-                    <DeleteAccount />
+                    <DeleteAccount userObj={userObj} profileObj={profileObj} />
                 </div>
             )}
-        </>
+        </div>
     );
 };
 

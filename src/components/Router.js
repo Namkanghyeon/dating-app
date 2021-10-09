@@ -1,6 +1,6 @@
 import React from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
-import Navigation from "components/public/Navigation";
+import Navigation from "components/common/Navigation";
 import Home from "routes/Home";
 import Matched from "routes/Matched";
 import MyProfile from "routes/MyProfile";
@@ -16,7 +16,7 @@ const AppRouter = ({ userObj, profileObj, reload }) => {
                     <>
                         <div
                             style={{
-                                maxWidth: 900,
+                                maxWidth: 300,
                                 width: "100%",
                                 margin: "0 auto",
                                 marginTop: 80,

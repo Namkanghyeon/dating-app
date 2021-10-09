@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { signInWithEmailAndPassword } from "@firebase/auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBell } from "@fortawesome/free-solid-svg-icons";
+import { faSeedling } from "@fortawesome/free-solid-svg-icons";
 
 const LogIn = () => {
     const [email, setEmail] = useState("");
@@ -39,13 +39,8 @@ const LogIn = () => {
 
     return (
         <div className="authContainer">
-            <FontAwesomeIcon
-                icon={faBell}
-                color={"#FF0000"}
-                size="5x"
-                style={{ marginBottom: 30 }}
-            />
-            <h2>Log In</h2>
+            <FontAwesomeIcon icon={faSeedling} size="5x" className="logo" />
+            <h2 className="login">Log In</h2>
             <form onSubmit={onSubmit} className="container">
                 <input
                     name="email"
@@ -70,13 +65,22 @@ const LogIn = () => {
                     value={"로그인"}
                     className="authInput authSubmit"
                 />
-                {error && <span className="authError">{error}</span>}
             </form>
             <form>
-                <button>
+                <span
+                    style={{
+                        fontSize: "12px",
+                        marginLeft: "15px",
+                        marginRight: "30px",
+                    }}
+                >
+                    또는
+                </span>
+                <button className="signInSubmit">
                     <Link to="/signup">회원가입</Link>
                 </button>
             </form>
+            {error && <span className="authError">{error}</span>}
         </div>
     );
 };

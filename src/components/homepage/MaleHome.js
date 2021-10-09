@@ -22,19 +22,19 @@ const MaleHome = ({ userObj, profileObj }) => {
     }, []);
 
     return (
-        <>
-            <div>
+        <div>
+            <span className="title">
                 {profileObj.name}님의 프로필을 좋아하는 여성들
-                {femaleProfileObjs.map((femaleProfileObj) => (
-                    <FemaleProfile
-                        key={femaleProfileObj.id}
-                        userObj={userObj}
-                        profileObj={profileObj}
-                        femaleProfileObj={femaleProfileObj}
-                    />
-                ))}
-            </div>
-        </>
+            </span>
+            {femaleProfileObjs.map((femaleProfileObj) => (
+                <FemaleProfile
+                    key={femaleProfileObj.id}
+                    userObj={userObj}
+                    profileObj={profileObj}
+                    femaleProfileObj={femaleProfileObj}
+                />
+            ))}
+        </div>
     );
 };
 

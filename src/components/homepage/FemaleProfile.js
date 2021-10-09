@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { dbService } from "fbase";
-import { doc, updateDoc, collection, addDoc } from "@firebase/firestore";
+import { doc, updateDoc } from "@firebase/firestore";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
@@ -16,6 +16,9 @@ const FemaleProfile = ({
     const [yourOk, setYourOk] = useState(false);
 
     useEffect(() => {
+        if (profileObj.liking.includes(femaleProfileObj.id)) {
+            setLike(true);
+        }
         const myPartners = profileObj.matchedPartners;
         myPartners.map((myPartner) => {
             if (myPartner.id === femaleProfileObj.id) {
@@ -47,10 +50,13 @@ const FemaleProfile = ({
         await updateDoc(doc(dbService, "profiles", femaleProfileObj.id), {
             matchedPartners: newFemaleMatchedPartners,
         });
-        const newMaleMatchedPartners = profileObj.matchedPartners;
-        newMaleMatchedPartners.push({ id: femaleProfileObj.id, ok: false });
+        const newLiking = profileObj.liking;
+        newLiking.push(femaleProfileObj.id);
+        const newMatchedPartners = profileObj.matchedPartners;
+        newMatchedPartners.push({ id: femaleProfileObj.id, ok: false });
         await updateDoc(doc(dbService, "profiles", userObj.uid), {
-            matchedPartners: newMaleMatchedPartners,
+            liking: newLiking,
+            matchedPartners: newMatchedPartners,
         });
         setLike(true);
     };
@@ -72,86 +78,81 @@ const FemaleProfile = ({
     console.log("my your ok: ", yourOk);
 
     return (
-        <>
-            <h3> Female's Profile </h3>
-            <div>
-                <h4>
-                    {femaleProfileObj.name} / {femaleProfileObj.age} /{" "}
-                    {femaleProfileObj.school}
-                </h4>
+        <div>
+            <h4>
+                {femaleProfileObj.name} / {femaleProfileObj.age} /{" "}
+                {femaleProfileObj.school}
+            </h4>
 
-                {detailMode ? (
-                    <>
-                        <h5>{femaleProfileObj.introduce}</h5>
-                        {matchMode ? (
-                            <>
-                                <img
-                                    src={femaleProfileObj.attachmentUrl}
-                                    style={{
-                                        maxWidth: "50px",
-                                        maxHeight: "50px",
-                                    }}
-                                    alt=""
-                                />
-                                {!ok ? (
-                                    <span onClick={onOkClick}>
-                                        <FontAwesomeIcon icon={faHeart} />
-                                    </span>
-                                ) : (
-                                    <>
-                                        {yourOk ? (
-                                            <>
-                                                <h3>
-                                                    축하드립니다. 좋은 인연
-                                                    되시기 바랍니다.
-                                                </h3>
-                                                <h4>
-                                                    {femaleProfileObj.name}님의
-                                                    카카오톡 ID:{" "}
-                                                    {
-                                                        femaleProfileObj.kakaoTalkId
-                                                    }
-                                                </h4>
-                                            </>
-                                        ) : (
-                                            <h5>
-                                                상대방도 수락 시 서로의 카카오톡
-                                                아이디가 공개됩니다.
-                                            </h5>
-                                        )}
-                                    </>
-                                )}
-                            </>
-                        ) : (
-                            <>
-                                {!like ? (
-                                    <span onClick={onLikeClick}>
-                                        <FontAwesomeIcon icon={faHeart} />
-                                    </span>
-                                ) : (
-                                    <h5>좋아요!</h5>
-                                )}
-                            </>
-                        )}
-                        <form>
-                            <input
-                                type="submit"
-                                value="간략히"
-                                onClick={toggleDetailMode}
+            {detailMode ? (
+                <>
+                    <h5>{femaleProfileObj.introduce}</h5>
+                    {matchMode ? (
+                        <>
+                            <img
+                                src={femaleProfileObj.attachmentUrl}
+                                style={{
+                                    maxWidth: "50px",
+                                    maxHeight: "50px",
+                                }}
+                                alt=""
                             />
-                        </form>
-                    </>
-                ) : (
+                            {!ok ? (
+                                <span onClick={onOkClick}>
+                                    <FontAwesomeIcon icon={faHeart} />
+                                </span>
+                            ) : (
+                                <>
+                                    {yourOk ? (
+                                        <>
+                                            <h3>
+                                                축하드려요!!. 좋은 인연 되시기
+                                                바랄게요~
+                                            </h3>
+                                            <h4>
+                                                {femaleProfileObj.name}님의
+                                                카카오톡 ID:{" "}
+                                                {femaleProfileObj.kakaoTalkId}
+                                            </h4>
+                                        </>
+                                    ) : (
+                                        <h5>
+                                            상대방도 수락 시 서로의 카카오톡
+                                            아이디가 공개됩니다.
+                                        </h5>
+                                    )}
+                                </>
+                            )}
+                        </>
+                    ) : (
+                        <>
+                            {!like ? (
+                                <span onClick={onLikeClick}>
+                                    <FontAwesomeIcon icon={faHeart} />
+                                </span>
+                            ) : (
+                                <h5>좋아요!</h5>
+                            )}
+                        </>
+                    )}
                     <form>
                         <input
                             type="submit"
-                            value="자세히"
+                            value="간략히"
                             onClick={toggleDetailMode}
                         />
                     </form>
-                )}
-            </div>
-        </>
+                </>
+            ) : (
+                <form>
+                    <input
+                        type="submit"
+                        value="자세히"
+                        onClick={toggleDetailMode}
+                    />
+                </form>
+            )}
+        </div>
     );
 };
 

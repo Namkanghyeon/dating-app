@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import AppRouter from "components/public/Router";
+import AppRouter from "components/Router";
 import { authService, dbService } from "fbase";
 import { setPersistence, browserSessionPersistence } from "@firebase/auth";
 import { doc, getDoc } from "@firebase/firestore";
