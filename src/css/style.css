@@ -31,6 +31,13 @@ form {
     width: 100%;
 }
 
+.container {
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
 .title {
     display: flex;
     justify-content: center;
