@@ -5,7 +5,6 @@ import "css/style.css";
 import "css/navigation.css";
 import "css/profile.css";
 import "css/login.css";
-import "css/home.css";
 
 ReactDOM.render(
     <React.StrictMode>

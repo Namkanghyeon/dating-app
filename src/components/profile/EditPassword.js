@@ -6,7 +6,6 @@ import { Redirect } from "react-router";
 const EditPassword = () => {
     const [newPassword, setNewPassword] = useState("");
     const [newPasswordConfirm, setNewPasswordConfirm] = useState("");
-    const [differentPassword, setDifferentPassword] = useState(false);
     const [done, setDone] = useState(false);
 
     const onSubmit = (event) => {
@@ -16,7 +15,7 @@ const EditPassword = () => {
             updatePassword(user, newPassword);
             setDone(true);
         } else {
-            setDifferentPassword(true);
+            alert("비밀번호를 다시 한번 확인해주세요");
         }
     };
 
@@ -36,24 +35,32 @@ const EditPassword = () => {
                     <Redirect to="/" />
                 </>
             ) : (
-                <form onSubmit={onSubmit}>
+                <form
+                    onSubmit={onSubmit}
+                    className="container"
+                    style={{ marginTop: "20px" }}
+                >
                     <div>
-                        새로운 비밀번호
-                        <input type="password" onChange={onNewPasswordChange} />
-                    </div>
-                    <div>
-                        새로운 비밀번호 확인
                         <input
                             type="password"
-                            onChange={onNewPasswordChangeConfirm}
+                            placeholder="새로운 비밀번호"
+                            onChange={onNewPasswordChange}
+                            className="authInput"
                         />
                     </div>
-                    {differentPassword && (
-                        <div>
-                            두 비밀번호가 다릅니다. 다시 한 번 확인해주세요.
-                        </div>
-                    )}
-                    <input type="submit" value="비밀번호 변경" />
+                    <div>
+                        <input
+                            type="password"
+                            placeholder="비밀번호 확인"
+                            onChange={onNewPasswordChangeConfirm}
+                            className="authInput"
+                        />
+                    </div>
+                    <input
+                        type="submit"
+                        value="비밀번호 변경"
+                        className="authInput authSubmit"
+                    />
                 </form>
             )}
         </>

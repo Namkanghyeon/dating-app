@@ -4,7 +4,7 @@ import { v4 } from "uuid";
 import { doc, setDoc } from "@firebase/firestore";
 import { ref, uploadString, getDownloadURL } from "@firebase/storage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faSyncAlt, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Redirect } from "react-router";
 
 const CreateProfile = ({ userCred, reload }) => {
@@ -231,8 +231,17 @@ const CreateProfile = ({ userCred, reload }) => {
                     <h3 className="profileSubtitle">사진</h3>
                 </div>
                 <label htmlFor="attach-file" className="profileLabel">
-                    <span>사진 추가</span>
-                    <FontAwesomeIcon icon={faPlus} />
+                    {!attachment ? (
+                        <div>
+                            <span>사진 추가</span>
+                            <FontAwesomeIcon icon={faPlus} />
+                        </div>
+                    ) : (
+                        <div>
+                            <span>사진 변경</span>
+                            <FontAwesomeIcon icon={faSyncAlt} />
+                        </div>
+                    )}
                 </label>
                 <input
                     accept="image/*"

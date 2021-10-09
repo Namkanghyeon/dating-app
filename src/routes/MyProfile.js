@@ -38,15 +38,15 @@ const MyProfile = ({ userObj, profileObj, reload }) => {
                     <div className="profileButtons">
                         <span className="profileButtonsChild">
                             <input
-                                onClick={onPasswordClick}
-                                value="비밀번호 변경"
+                                onClick={onLogOutClick}
+                                value="로그아웃"
                                 className="profileButtonsChildChild"
                             />
                         </span>
                         <span className="profileButtonsChild">
                             <input
-                                onClick={onLogOutClick}
-                                value="로그아웃"
+                                onClick={onPasswordClick}
+                                value="비밀번호 변경"
                                 className="profileButtonsChildChild"
                             />
                         </span>

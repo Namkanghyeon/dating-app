@@ -9,7 +9,7 @@ import {
     deleteObject,
 } from "@firebase/storage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
 import { Redirect } from "react-router";
 
 const EditProfile = ({ userObj, profileObj, reload }) => {
@@ -142,7 +142,7 @@ const EditProfile = ({ userObj, profileObj, reload }) => {
                 </div>
                 <label htmlFor="attach-file" className="profileLabel">
                     <span>사진 변경</span>
-                    <FontAwesomeIcon icon={faPlus} />
+                    <FontAwesomeIcon icon={faSyncAlt} />
                 </label>
                 <input
                     accept="image/*"

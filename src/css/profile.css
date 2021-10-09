@@ -129,3 +129,23 @@ input[type="radio"]:checked {
     align-items: center;
     max-width: 80px;
 }
+
+.deleteAccountButtons {
+    display: flex;
+}
+
+.deleteAccountButton {
+    flex: 1;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 5px;
+    background-color: #00ff77;
+    color: white;
+    border-radius: 30px;
+}
+
+.deleteYes {
+    background-color: red;
+    border-color: red;
+}
