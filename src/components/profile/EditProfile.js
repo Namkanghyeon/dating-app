@@ -21,9 +21,12 @@ const EditProfile = ({ userObj, profileObj, reload }) => {
     const fileInput = useRef();
 
     useEffect(() => {
-        setName(profileObj.name);
-        setIntroduce(profileObj.introduce);
-        setKakaoTalkId(profileObj.kakaoTalkId);
+        if (profileObj) {
+            setName(profileObj.name);
+            setIntroduce(profileObj.introduce);
+            setKakaoTalkId(profileObj.kakaoTalkId);
+            setAttachment(profileObj.attachmentUrl);
+        }
     }, []);
 
     const onSubmit = async (event) => {
@@ -38,7 +41,7 @@ const EditProfile = ({ userObj, profileObj, reload }) => {
         } else {
             let attachmentUrl = profileObj.attachmentUrl;
 
-            if (attachment !== "") {
+            if (attachment !== attachmentUrl) {
                 const oldAttachmentRef = ref(
                     storageService,
                     profileObj.attachmentUrl
@@ -154,15 +157,15 @@ const EditProfile = ({ userObj, profileObj, reload }) => {
                         opacity: 0,
                     }}
                 />
-                {attachment ? (
-                    <div className="profileAttachment">
-                        <img src={attachment} alt="" />
-                    </div>
-                ) : (
-                    <div className="profileAttachment">
-                        <img src={profileObj.attachmentUrl} alt="" />
-                    </div>
-                )}
+                {/* {attachment ? ( */}
+                <div className="profileAttachment">
+                    <img src={attachment} alt="" />
+                </div>
+                {/* // ) : (
+                //     <div className="profileAttachment">
+                //         <img src={profileObj.attachmentUrl} alt="" />
+                //     </div>
+                // )} */}
                 <input type="submit" value="수정" className="profileButton" />
             </form>
             {done && <Redirect to="/" />}
