@@ -49,7 +49,7 @@ const SignUp = ({ reload }) => {
     return (
         <>
             {!isLoggedIn && (
-                <form onSubmit={onSubmit} className="container">
+                <form onSubmit={onSubmit} className="authContainer">
                     <input
                         name="email"
                         type="email"

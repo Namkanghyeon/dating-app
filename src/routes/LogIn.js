@@ -39,7 +39,7 @@ const LogIn = () => {
 
     return (
         <div className="authContainer">
-            <FontAwesomeIcon icon={faSeedling} size="5x" className="logo" />
+            <FontAwesomeIcon icon={faSeedling} size="2x" className="logo" />
             <h2 className="login">Log In</h2>
             <form onSubmit={onSubmit} className="container">
                 <input
