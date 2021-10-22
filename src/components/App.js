@@ -9,7 +9,6 @@ import { redux_setProfile } from "store/profileReducer";
 function App() {
     const [ready, setReady] = useState(false);
     const [userObj, setUserObj] = useState(null);
-    const [isProfileCreated, setIsProfileCreated] = useState(false);
 
     const dispatch = useDispatch();
     const redux_setProfileObj = (profileObj) =>
@@ -20,7 +19,6 @@ function App() {
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
             redux_setProfileObj(docSnap.data());
-            setIsProfileCreated(true);
         }
     };
 
@@ -44,10 +42,7 @@ function App() {
     return (
         <>
             {ready ? (
-                <AppRouter
-                    userObj={userObj}
-                    isProfileCreated={isProfileCreated}
-                />
+                <AppRouter userObj={userObj} />
             ) : (
                 <div style={{ marginTop: 20 }}>"loading..."</div>
             )}

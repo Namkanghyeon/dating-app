@@ -7,10 +7,18 @@ import Matched from "routes/Matched";
 import MyProfile from "routes/MyProfile";
 import SignUp from "routes/SignUp";
 
-const AppRouter = ({ userObj, isProfileCreated }) => {
+import { useSelector, shallowEqual } from "react-redux";
+
+const AppRouter = ({ userObj }) => {
+    const { profileObj } = useSelector(
+        (state) => ({
+            profileObj: state.profileReducer.profileObj,
+        }),
+        shallowEqual
+    );
     return (
         <HashRouter>
-            {userObj && isProfileCreated && <Navigation />}
+            {userObj && Object.keys(profileObj).length !== 0 && <Navigation />}
             <Switch>
                 <div
                     style={{

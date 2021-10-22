@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { dbService } from "fbase";
 import { collection, where, onSnapshot, query } from "@firebase/firestore";
-import FemaleProfile from "components/homepage/FemaleProfile";
+import Profile from "./Profile";
 
 const MaleHome = ({ userObj, profileObj }) => {
     const [femaleProfileObjs, setFemaleProfileObjs] = useState([]);
@@ -25,11 +25,12 @@ const MaleHome = ({ userObj, profileObj }) => {
         <div>
             <span className="title">회원님의 프로필을 좋아하는 여성들</span>
             {femaleProfileObjs.map((femaleProfileObj) => (
-                <FemaleProfile
+                <Profile
                     key={femaleProfileObj.id}
                     userObj={userObj}
-                    profileObj={profileObj}
-                    femaleProfileObj={femaleProfileObj}
+                    myProfileObj={profileObj}
+                    yourProfileObj={femaleProfileObj}
+                    matchMode={false}
                 />
             ))}
         </div>

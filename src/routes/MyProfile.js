@@ -11,12 +11,11 @@ const MyProfile = ({ userObj }) => {
     const [passwordMode, setPasswordMode] = useState(false);
     const [deleteMode, setDeleteMode] = useState(false);
 
-    // redux store에서 profileObj 가져오기 - shallowEqual 다시 공부
     const { profileObj } = useSelector(
         (state) => ({
             profileObj: state.profileReducer.profileObj,
-        })
-        // shallowEqual
+        }),
+        shallowEqual
     );
 
     console.log("myprofile123: ", profileObj);

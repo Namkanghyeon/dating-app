@@ -69,7 +69,7 @@ const MaleProfile = ({ userObj, profileObj, maleProfileObj, matchMode }) => {
     return (
         <div className="messageBox">
             <h4>
-                {maleProfileObj.name} / {maleProfileObj.age} /{" "}
+                {maleProfileObj.name} ({maleProfileObj.age}) /{" "}
                 {maleProfileObj.school}
             </h4>
 
@@ -124,7 +124,7 @@ const MaleProfile = ({ userObj, profileObj, maleProfileObj, matchMode }) => {
                             )}
                         </>
                     )}
-                    <form>
+                    <form className="detailButton">
                         <input
                             type="submit"
                             value="간략히"
@@ -133,7 +133,7 @@ const MaleProfile = ({ userObj, profileObj, maleProfileObj, matchMode }) => {
                     </form>
                 </>
             ) : (
-                <form>
+                <form className="detailButton">
                     <input
                         type="submit"
                         value="자세히"

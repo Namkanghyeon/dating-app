@@ -62,3 +62,32 @@ form {
     margin-bottom: 20px;
     line-height: 150%;
 }
+
+.introduceBox {
+    max-width: 280px;
+    text-align: center;
+    border: #00ff77 1px solid;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    line-height: 150%;
+}
+
+.likeButton {
+    all: unset;
+    color: #ff0000;
+    width: 80px;
+    height: 40px;
+    margin: 10px;
+    border: #00ff77 3px solid;
+    border-radius: 10px;
+}
+
+.detailButton {
+    width: 50;
+    height: 30;
+    margin-top: 10px;
+    color: #808080;
+    font-size: 14px;
+}

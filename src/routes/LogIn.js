@@ -66,17 +66,9 @@ const LogIn = () => {
                     className="authInput authSubmit"
                 />
             </form>
-            <form>
-                <span
-                    style={{
-                        fontSize: "12px",
-                        marginLeft: "15px",
-                        marginRight: "30px",
-                    }}
-                >
-                    또는
-                </span>
-                <button className="signInSubmit">
+            <form className="signUp">
+                <span style={{ fontSize: "12px" }}>또는</span>
+                <button className="signUpButton">
                     <Link to="/signup">회원가입</Link>
                 </button>
             </form>

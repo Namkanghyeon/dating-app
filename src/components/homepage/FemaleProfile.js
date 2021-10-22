@@ -74,13 +74,10 @@ const FemaleProfile = ({
         setOk(true);
     };
 
-    console.log("my ok: ", ok);
-    console.log("my your ok: ", yourOk);
-
     return (
         <div className="messageBox">
             <h4>
-                {femaleProfileObj.name} / {femaleProfileObj.age} /{" "}
+                {femaleProfileObj.name} ({femaleProfileObj.age}) /{" "}
                 {femaleProfileObj.school}
             </h4>
 
@@ -135,7 +132,7 @@ const FemaleProfile = ({
                             )}
                         </>
                     )}
-                    <form>
+                    <form className="detailButton">
                         <input
                             type="submit"
                             value="간략히"
@@ -144,7 +141,7 @@ const FemaleProfile = ({
                     </form>
                 </>
             ) : (
-                <form>
+                <form className="detailButton">
                     <input
                         type="submit"
                         value="자세히"

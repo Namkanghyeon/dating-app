@@ -40,18 +40,23 @@
     font-size: 16px;
 }
 
-.signInSubmit {
+.signUp {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.signUpButton {
     text-align: center;
     background: #ffffff;
     color: #00ff77;
-    border: #00ff77 1px solid;
-    margin-top: 10;
+    border: #00ff77 3px solid;
     cursor: pointer;
     font-size: 16px;
-    max-width: 200px;
     align-items: left;
-    border-radius: 10px;
+    border-radius: 20px;
     padding: 5px;
+    margin-left: 20px;
 }
 
 .authError {

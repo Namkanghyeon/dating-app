@@ -4,9 +4,12 @@ import FemaleHome from "components/homepage/FemaleHome";
 import MaleHome from "components/homepage/MaleHome";
 
 const Home = ({ userObj }) => {
-    const { profileObj } = useSelector((state) => ({
-        profileObj: state.profileReducer.profileObj,
-    }));
+    const { profileObj } = useSelector(
+        (state) => ({
+            profileObj: state.profileReducer.profileObj,
+        }),
+        shallowEqual
+    );
     return (
         <>
             <div className="container">

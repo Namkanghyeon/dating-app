@@ -22,8 +22,8 @@ const CreateProfile = ({ userCred }) => {
     const fileInput = useRef();
 
     const dispatch = useDispatch();
-    const redux_setProfileObj = (_profileObj) =>
-        dispatch(redux_setProfile(_profileObj));
+    const redux_setProfileObj = (profileObj) =>
+        dispatch(redux_setProfile(profileObj));
 
     const onSubmit = async (event) => {
         event.preventDefault();
@@ -55,7 +55,6 @@ const CreateProfile = ({ userCred }) => {
 
             const newProfileObj = {
                 // 인적사항
-                uid: userCred.user.uid,
                 name: name,
                 gender: gender,
                 age: age,
@@ -65,8 +64,8 @@ const CreateProfile = ({ userCred }) => {
                 kakaoTalkId: kakaoTalkId,
                 attachmentUrl: attachmentUrl,
                 // 매칭 관련
-                liking: [], // for female
-                liked: [], // for male
+                liking: [], // 여성 유저용
+                liked: [], // 남성 유저용
                 matchedPartners: [],
             };
             redux_setProfileObj(newProfileObj);
