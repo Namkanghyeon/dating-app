@@ -11,8 +11,10 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
 import { Redirect } from "react-router";
+import { useDispatch } from "react-redux";
+import { redux_setProfile } from "store/profileReducer";
 
-const EditProfile = ({ userObj, profileObj, reload }) => {
+const EditProfile = ({ userObj, profileObj }) => {
     const [name, setName] = useState("");
     const [introduce, setIntroduce] = useState("");
     const [kakaoTalkId, setKakaoTalkId] = useState("");
@@ -28,6 +30,10 @@ const EditProfile = ({ userObj, profileObj, reload }) => {
             setAttachment(profileObj.attachmentUrl);
         }
     }, []);
+
+    const dispatch = useDispatch();
+    const redux_setProfileObj = (_profileObj) =>
+        dispatch(redux_setProfile(_profileObj));
 
     const onSubmit = async (event) => {
         event.preventDefault();
@@ -65,13 +71,13 @@ const EditProfile = ({ userObj, profileObj, reload }) => {
                 kakaoTalkId: kakaoTalkId,
                 attachmentUrl: attachmentUrl,
             };
+            redux_setProfileObj(newProfileObj);
             await updateDoc(
                 doc(dbService, "profiles", userObj.uid),
                 newProfileObj
             );
             setAttachment("");
             fileInput.current.value = "";
-            reload();
             setDone(true);
         }
     };

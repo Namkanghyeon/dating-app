@@ -1,8 +1,12 @@
 import React from "react";
+import { useSelector, shallowEqual } from "react-redux";
 import FemaleHome from "components/homepage/FemaleHome";
 import MaleHome from "components/homepage/MaleHome";
 
-const Home = ({ userObj, profileObj }) => {
+const Home = ({ userObj }) => {
+    const { profileObj } = useSelector((state) => ({
+        profileObj: state.profileReducer.profileObj,
+    }));
     return (
         <>
             <div className="container">

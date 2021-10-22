@@ -6,8 +6,10 @@ import { ref, uploadString, getDownloadURL } from "@firebase/storage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faSyncAlt, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Redirect } from "react-router";
+import { useDispatch } from "react-redux";
+import { redux_setProfile } from "store/profileReducer";
 
-const CreateProfile = ({ userCred, reload }) => {
+const CreateProfile = ({ userCred }) => {
     const [name, setName] = useState("");
     const [gender, setGender] = useState("");
     const [age, setAge] = useState("20");
@@ -18,6 +20,10 @@ const CreateProfile = ({ userCred, reload }) => {
     const [done, setDone] = useState(false);
     const [attachment, setAttachment] = useState("");
     const fileInput = useRef();
+
+    const dispatch = useDispatch();
+    const redux_setProfileObj = (_profileObj) =>
+        dispatch(redux_setProfile(_profileObj));
 
     const onSubmit = async (event) => {
         event.preventDefault();
@@ -63,13 +69,13 @@ const CreateProfile = ({ userCred, reload }) => {
                 liked: [], // for male
                 matchedPartners: [],
             };
+            redux_setProfileObj(newProfileObj);
             await setDoc(
                 doc(dbService, "profiles", userCred.user.uid),
                 newProfileObj
             );
             setAttachment("");
             fileInput.current.value = "";
-            reload();
             setDone(true);
         }
     };

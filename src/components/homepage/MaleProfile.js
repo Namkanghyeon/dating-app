@@ -67,7 +67,7 @@ const MaleProfile = ({ userObj, profileObj, maleProfileObj, matchMode }) => {
     };
 
     return (
-        <div>
+        <div className="messageBox">
             <h4>
                 {maleProfileObj.name} / {maleProfileObj.age} /{" "}
                 {maleProfileObj.school}
@@ -75,7 +75,6 @@ const MaleProfile = ({ userObj, profileObj, maleProfileObj, matchMode }) => {
 
             {detailMode ? (
                 <>
-                    <h5>{maleProfileObj.introduce}</h5>
                     {matchMode ? (
                         <>
                             <img
@@ -115,6 +114,7 @@ const MaleProfile = ({ userObj, profileObj, maleProfileObj, matchMode }) => {
                         </>
                     ) : (
                         <>
+                            <h5>{maleProfileObj.introduce}</h5>
                             {!like ? (
                                 <span onClick={onLikeClick}>
                                     <FontAwesomeIcon icon={faHeart} />

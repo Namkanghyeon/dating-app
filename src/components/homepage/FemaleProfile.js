@@ -78,7 +78,7 @@ const FemaleProfile = ({
     console.log("my your ok: ", yourOk);
 
     return (
-        <div>
+        <div className="messageBox">
             <h4>
                 {femaleProfileObj.name} / {femaleProfileObj.age} /{" "}
                 {femaleProfileObj.school}
@@ -86,7 +86,6 @@ const FemaleProfile = ({
 
             {detailMode ? (
                 <>
-                    <h5>{femaleProfileObj.introduce}</h5>
                     {matchMode ? (
                         <>
                             <img
@@ -126,6 +125,7 @@ const FemaleProfile = ({
                         </>
                     ) : (
                         <>
+                            <h5>{femaleProfileObj.introduce}</h5>
                             {!like ? (
                                 <span onClick={onLikeClick}>
                                     <FontAwesomeIcon icon={faHeart} />

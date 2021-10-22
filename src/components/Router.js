@@ -1,61 +1,42 @@
 import React from "react";
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import { HashRouter, Switch, Route } from "react-router-dom";
 import Navigation from "components/common/Navigation";
 import Home from "routes/Home";
+import LogIn from "routes/LogIn";
 import Matched from "routes/Matched";
 import MyProfile from "routes/MyProfile";
-import LogIn from "routes/LogIn";
 import SignUp from "routes/SignUp";
 
-const AppRouter = ({ userObj, profileObj, reload }) => {
+const AppRouter = ({ userObj, isProfileCreated }) => {
     return (
-        <>
-            <Router>
-                {userObj && profileObj && <Navigation />}
-                <Switch>
-                    <>
-                        <div
-                            style={{
-                                maxWidth: 300,
-                                width: "100%",
-                                margin: "0 auto",
-                                marginTop: 80,
-                                display: "flex",
-                                justifyContent: "center",
-                            }}
-                        >
-                            <Route exact path="/">
-                                {userObj ? (
-                                    <Home
-                                        userObj={userObj}
-                                        profileObj={profileObj}
-                                    />
-                                ) : (
-                                    <LogIn />
-                                )}
-                            </Route>
-                            <Route exact path="/matched">
-                                <Matched
-                                    userObj={userObj}
-                                    profileObj={profileObj}
-                                    reload={reload}
-                                />
-                            </Route>
-                            <Route exact path="/myprofile">
-                                <MyProfile
-                                    userObj={userObj}
-                                    profileObj={profileObj}
-                                    reload={reload}
-                                />
-                            </Route>
-                            <Route exact path="/signup">
-                                <SignUp reload={reload} />
-                            </Route>
-                        </div>
-                    </>
-                </Switch>
-            </Router>
-        </>
+        <HashRouter>
+            {userObj && isProfileCreated && <Navigation />}
+            <Switch>
+                <div
+                    style={{
+                        maxWidth: 300,
+                        width: "100%",
+                        margin: "0 auto",
+                        marginTop: 80,
+                        display: "flex",
+                        justifyContent: "center",
+                    }}
+                >
+                    <Route exact path="/">
+                        {userObj ? <Home userObj={userObj} /> : <LogIn />}
+                    </Route>
+                    <Route exact path="/matched">
+                        <Matched userObj={userObj} />
+                    </Route>
+                    <Route exact path="/myprofile">
+                        <MyProfile userObj={userObj} />
+                    </Route>
+                    <Route exact path="/signup">
+                        <SignUp />
+                    </Route>
+                </div>
+            </Switch>
+        </HashRouter>
     );
 };
 

@@ -3,7 +3,7 @@ import { authService } from "fbase";
 import { createUserWithEmailAndPassword } from "@firebase/auth";
 import CreateProfile from "components/profile/CreateProfile";
 
-const SignUp = ({ reload }) => {
+const SignUp = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
@@ -85,9 +85,7 @@ const SignUp = ({ reload }) => {
                     {error && <span className="authError">{error}</span>}
                 </form>
             )}
-            {isLoggedIn && (
-                <CreateProfile userCred={userCred} reload={reload} />
-            )}
+            {isLoggedIn && <CreateProfile userCred={userCred} />}
         </>
     );
 };

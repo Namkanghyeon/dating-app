@@ -4,11 +4,22 @@ import { useHistory } from "react-router";
 import DeleteAccount from "components/profile/DeleteAccount";
 import EditProfile from "components/profile/EditProfile";
 import EditPassword from "components/profile/EditPassword";
+import { useSelector, shallowEqual } from "react-redux";
 
-const MyProfile = ({ userObj, profileObj, reload }) => {
+const MyProfile = ({ userObj }) => {
     const history = useHistory();
     const [passwordMode, setPasswordMode] = useState(false);
     const [deleteMode, setDeleteMode] = useState(false);
+
+    // redux store에서 profileObj 가져오기 - shallowEqual 다시 공부
+    const { profileObj } = useSelector(
+        (state) => ({
+            profileObj: state.profileReducer.profileObj,
+        })
+        // shallowEqual
+    );
+
+    console.log("myprofile123: ", profileObj);
 
     const onDeleteClick = () => {
         console.log("delete account");
@@ -30,11 +41,7 @@ const MyProfile = ({ userObj, profileObj, reload }) => {
         <div>
             {!deleteMode && !passwordMode && (
                 <div className="container">
-                    <EditProfile
-                        userObj={userObj}
-                        profileObj={profileObj}
-                        reload={reload}
-                    />
+                    <EditProfile userObj={userObj} profileObj={profileObj} />
                     <div className="profileButtons">
                         <span className="profileButtonsChild">
                             <input

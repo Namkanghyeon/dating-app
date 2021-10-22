@@ -23,9 +23,7 @@ const MaleHome = ({ userObj, profileObj }) => {
 
     return (
         <div>
-            <span className="title">
-                {profileObj.name}님의 프로필을 좋아하는 여성들
-            </span>
+            <span className="title">회원님의 프로필을 좋아하는 여성들</span>
             {femaleProfileObjs.map((femaleProfileObj) => (
                 <FemaleProfile
                     key={femaleProfileObj.id}
