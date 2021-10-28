@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { authService } from "fbase";
 import { createUserWithEmailAndPassword } from "@firebase/auth";
-import CreateProfile from "components/profile/CreateProfile";
+import CreateProfile from "components/myProfile/CreateProfile";
 
 const SignUp = () => {
     const [email, setEmail] = useState("");

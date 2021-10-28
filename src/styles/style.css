@@ -18,8 +18,8 @@ body {
 
 button {
     border: #00ff77 1px solid;
-    background-color: white;
-    color: black;
+    background-color: #ffffff;
+    color: #000000;
 }
 
 a {
@@ -56,6 +56,28 @@ form {
     max-width: 300px;
     text-align: center;
     border: #00ff77 2px solid;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    line-height: 150%;
+}
+
+.selectedBox {
+    max-width: 300px;
+    text-align: center;
+    border: #00ffff 3px dashed;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    line-height: 150%;
+}
+
+.loveBox {
+    max-width: 300px;
+    text-align: center;
+    border: #00ffff 4px solid;
     border-radius: 10px;
     padding: 20px;
     margin-top: 20px;

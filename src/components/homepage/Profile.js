@@ -82,7 +82,13 @@ const Profile = ({ userObj, myProfileObj, yourProfileObj, matchMode }) => {
     };
 
     return (
-        <div className="messageBox">
+        <div
+            className={`${
+                like
+                    ? `${ok && yourOk ? "loveBox" : "selectedBox"}`
+                    : "messageBox"
+            }`}
+        >
             <h4>
                 {yourProfileObj.name}({yourProfileObj.age}) /{" "}
                 {yourProfileObj.school}
@@ -112,9 +118,10 @@ const Profile = ({ userObj, myProfileObj, yourProfileObj, matchMode }) => {
                                     {yourOk ? (
                                         <>
                                             <h3>
-                                                상대방도 회원님이 마음에
-                                                드셨나봐요. 축하드려요!!. 좋은
-                                                인연 되시기 바랄게요~
+                                                {yourProfileObj.name}님도{" "}
+                                                {myProfileObj.name}님이 마음에
+                                                드셨나봐요. 축하드려요!! 좋은
+                                                인연 되시길 바랄게요~
                                             </h3>
                                             <h4>
                                                 {yourProfileObj.name}님의

@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { authService } from "fbase";
 import { useHistory } from "react-router";
-import DeleteAccount from "components/profile/DeleteAccount";
-import EditProfile from "components/profile/EditProfile";
-import EditPassword from "components/profile/EditPassword";
+import DeleteAccount from "components/myProfile/DeleteAccount";
+import EditProfile from "components/myProfile/EditProfile";
+// import EditPassword from "components/profile/EditPassword";
 import { useSelector, shallowEqual } from "react-redux";
 
 const MyProfile = ({ userObj }) => {
     const history = useHistory();
-    const [passwordMode, setPasswordMode] = useState(false);
+    // const [passwordMode, setPasswordMode] = useState(false);
     const [deleteMode, setDeleteMode] = useState(false);
 
     const { profileObj } = useSelector(
@@ -17,8 +17,6 @@ const MyProfile = ({ userObj }) => {
         }),
         shallowEqual
     );
-
-    console.log("myprofile123: ", profileObj);
 
     const onDeleteClick = () => {
         console.log("delete account");
@@ -31,14 +29,15 @@ const MyProfile = ({ userObj }) => {
         history.push("/");
     };
 
-    const onPasswordClick = () => {
-        console.log("change password");
-        setPasswordMode(true);
-    };
+    // const onPasswordClick = () => {
+    //     console.log("change password");
+    //     setPasswordMode(true);
+    // };
 
     return (
         <div>
-            {!deleteMode && !passwordMode && (
+            {/* {!deleteMode && !passwordMode && ( */}
+            {!deleteMode && (
                 <div className="container">
                     <EditProfile userObj={userObj} profileObj={profileObj} />
                     <div className="profileButtons">
@@ -49,13 +48,13 @@ const MyProfile = ({ userObj }) => {
                                 className="profileButtonsChildChild"
                             />
                         </span>
-                        <span className="profileButtonsChild">
+                        {/* <span className="profileButtonsChild">
                             <input
                                 onClick={onPasswordClick}
                                 value="비밀번호 변경"
                                 className="profileButtonsChildChild"
                             />
-                        </span>
+                        </span> */}
                         <span className="profileButtonsChild">
                             <input
                                 onClick={onDeleteClick}
@@ -66,11 +65,11 @@ const MyProfile = ({ userObj }) => {
                     </div>
                 </div>
             )}
-            {passwordMode && (
+            {/* {passwordMode && (
                 <div>
                     <EditPassword />
                 </div>
-            )}
+            )} */}
             {deleteMode && (
                 <div>
                     <DeleteAccount userObj={userObj} profileObj={profileObj} />

@@ -71,7 +71,17 @@ const EditProfile = ({ userObj, profileObj }) => {
                 kakaoTalkId: kakaoTalkId,
                 attachmentUrl: attachmentUrl,
             };
-            redux_setProfileObj(newProfileObj);
+
+            const newProfileObjForRedux = {
+                ...profileObj,
+                name: name,
+                introduce: introduce,
+                kakaoTalkId: kakaoTalkId,
+                attachmentUrl: attachmentUrl,
+            };
+
+            redux_setProfileObj(newProfileObjForRedux);
+
             await updateDoc(
                 doc(dbService, "profiles", userObj.uid),
                 newProfileObj
@@ -163,15 +173,9 @@ const EditProfile = ({ userObj, profileObj }) => {
                         opacity: 0,
                     }}
                 />
-                {/* {attachment ? ( */}
                 <div className="profileAttachment">
                     <img src={attachment} alt="" />
                 </div>
-                {/* // ) : (
-                //     <div className="profileAttachment">
-                //         <img src={profileObj.attachmentUrl} alt="" />
-                //     </div>
-                // )} */}
                 <input type="submit" value="수정" className="profileButton" />
             </form>
             {done && <Redirect to="/" />}
