@@ -3,6 +3,7 @@ import { persistReducer } from "redux-persist";
 //import storage from "redux-persist/lib/storage";
 import storageSession from "redux-persist/lib/storage/session";
 import profileReducer from "./profileReducer";
+import currentPageReducer from "./currentPageReducer";
 
 const persistConfig = {
     key: "root",
@@ -12,6 +13,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     profileReducer,
+    currentPageReducer,
 });
 
 //export default rootReducer;

@@ -87,13 +87,14 @@ form {
 
 .introduceBox {
     max-width: 280px;
-    text-align: center;
+    text-align: justify;
     border: #00ff77 1px solid;
     border-radius: 10px;
     padding: 20px;
     margin-top: 20px;
     margin-bottom: 20px;
     line-height: 150%;
+    font-size: 12px;
 }
 
 .likeButton {

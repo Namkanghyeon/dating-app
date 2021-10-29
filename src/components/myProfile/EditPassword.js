@@ -51,6 +51,7 @@ const EditPassword = () => {
                     <div>
                         <input
                             type="password"
+                            maxLength="20"
                             placeholder="새로운 비밀번호"
                             onChange={onNewPasswordChange}
                             className="authInput"
@@ -59,6 +60,7 @@ const EditPassword = () => {
                     <div>
                         <input
                             type="password"
+                            maxLength="20"
                             placeholder="비밀번호 확인"
                             onChange={onNewPasswordChangeConfirm}
                             className="authInput"

@@ -70,6 +70,7 @@ const DeleteAccount = ({ userObj, profileObj }) => {
                             <input
                                 name="email"
                                 type="email"
+                                maxLength="60"
                                 placeholder="Email"
                                 required
                                 value={email}
@@ -79,6 +80,7 @@ const DeleteAccount = ({ userObj, profileObj }) => {
                             <input
                                 name="password"
                                 type="password"
+                                maxLength="20"
                                 placeholder="Password"
                                 required
                                 value={password}

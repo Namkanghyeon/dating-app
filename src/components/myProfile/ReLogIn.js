@@ -41,6 +41,7 @@ const ReLogIn = ({ setUserEmail, setUserPassword }) => {
                 <input
                     name="email"
                     type="email"
+                    maxLength="60"
                     placeholder="Email"
                     required
                     value={email}
@@ -50,6 +51,7 @@ const ReLogIn = ({ setUserEmail, setUserPassword }) => {
                 <input
                     name="password"
                     type="password"
+                    maxLength="20"
                     placeholder="Password"
                     required
                     value={password}

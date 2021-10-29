@@ -53,6 +53,7 @@ const SignUp = () => {
                     <input
                         name="email"
                         type="email"
+                        maxLength="60"
                         placeholder="이메일"
                         required
                         value={email}
@@ -62,6 +63,7 @@ const SignUp = () => {
                     <input
                         name="password"
                         type="password"
+                        maxLength="20"
                         placeholder="비밀번호"
                         required
                         value={password}
@@ -71,6 +73,7 @@ const SignUp = () => {
                     <input
                         name="passwordConfirm"
                         type="password"
+                        maxLength="20"
                         placeholder="비밀번호 확인"
                         required
                         value={passwordConfirm}

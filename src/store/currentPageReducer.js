@@ -1,26 +1,26 @@
 // 액션 타입
-const SET_PROFILE = "profileReducer/SET_PROFILE";
+const SET_PAGE = "currentPageReducer/SET_PAGE";
 
 // 액션 생성함수
-export const redux_setProfile = (profileObj) => {
+export const redux_setPage = (currentPage) => {
     return {
-        type: SET_PROFILE,
-        profileObj: profileObj,
+        type: SET_PAGE,
+        currentPage: currentPage,
     };
 };
 
 // 초기 상태
 const initialState = {
-    profileObj: {},
+    currentPage: 1,
 };
 
 // 리듀서
 export default function profileReducer(state = initialState, action) {
     switch (action.type) {
-        case SET_PROFILE:
+        case SET_PAGE:
             return {
                 ...state,
-                profileObj: action.profileObj,
+                currentPage: action.currentPage,
             };
         default:
             return state;

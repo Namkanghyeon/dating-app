@@ -45,6 +45,7 @@ const LogIn = () => {
                 <input
                     name="email"
                     type="email"
+                    maxLength="60"
                     placeholder="Email"
                     required
                     value={email}
@@ -54,6 +55,7 @@ const LogIn = () => {
                 <input
                     name="password"
                     type="password"
+                    maxLength="20"
                     placeholder="Password"
                     required
                     value={password}

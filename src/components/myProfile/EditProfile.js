@@ -13,6 +13,7 @@ import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
 import { Redirect } from "react-router";
 import { useDispatch } from "react-redux";
 import { redux_setProfile } from "store/profileReducer";
+import { redux_setPage } from "store/currentPageReducer";
 
 const EditProfile = ({ userObj, profileObj }) => {
     const [name, setName] = useState("");
@@ -34,6 +35,8 @@ const EditProfile = ({ userObj, profileObj }) => {
     const dispatch = useDispatch();
     const redux_setProfileObj = (_profileObj) =>
         dispatch(redux_setProfile(_profileObj));
+    const redux_setCurrentPage = (currentPage) =>
+        dispatch(redux_setPage(currentPage));
 
     const onSubmit = async (event) => {
         event.preventDefault();
@@ -88,6 +91,7 @@ const EditProfile = ({ userObj, profileObj }) => {
             );
             setAttachment("");
             fileInput.current.value = "";
+            redux_setCurrentPage(1);
             setDone(true);
         }
     };
@@ -130,6 +134,7 @@ const EditProfile = ({ userObj, profileObj }) => {
                     <h3 className="profileSubtitle">이름</h3>
                     <input
                         type="text"
+                        maxLength="20"
                         name="name"
                         value={name}
                         onChange={onChange}
@@ -138,18 +143,26 @@ const EditProfile = ({ userObj, profileObj }) => {
                 </div>
                 <div>
                     <h3 className="profileSubtitle">자기소개</h3>
-                    <textarea
-                        type="text"
-                        name="introduce"
-                        value={introduce}
-                        onChange={onChange}
-                        className="profileIntroduce profileInput"
-                    />
+                    <div className="profileInput">
+                        <textarea
+                            type="text"
+                            maxLength="400"
+                            name="introduce"
+                            value={introduce}
+                            onChange={onChange}
+                            className="profileIntroduce "
+                        />
+                        <span className="profileIntroduceCount">
+                            {introduce.length}/400
+                        </span>
+                    </div>
                 </div>
                 <div>
                     <h3 className="profileSubtitle">카카오톡 아이디</h3>
                     <input
                         type="text"
+                        minLength="4"
+                        maxLength="20"
                         name="kakaoTalkId"
                         value={kakaoTalkId}
                         onChange={onChange}

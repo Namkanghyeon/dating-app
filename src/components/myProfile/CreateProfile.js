@@ -139,6 +139,8 @@ const CreateProfile = ({ userCred }) => {
                     <h3 className="profileSubtitle">이름</h3>
                     <input
                         type="text"
+                        minLength="2"
+                        maxLength="20"
                         name="name"
                         onChange={onChange}
                         className="profileInput"
@@ -214,18 +216,26 @@ const CreateProfile = ({ userCred }) => {
                 </div>
                 <div>
                     <h3 className="profileSubtitle">자기소개</h3>
-                    <textarea
-                        type="text"
-                        name="introduce"
-                        placeholder="관심사, 취미, 좋아하는 것, 연애 가치관 등을 적어주세요!&#13;&#10;성의있게 작성할 수록 매칭 확률도 높아지겠죠?"
-                        onChange={onChange}
-                        className="profileIntroduce profileInput"
-                    />
+                    <div className="profileInput">
+                        <textarea
+                            type="text"
+                            maxLength="400"
+                            name="introduce"
+                            placeholder="관심사, 취미, 좋아하는 것, 연애 가치관 등을 적어주세요! (최대 400자)&#13;&#10;성의있게 작성할 수록 매칭 확률도 높아지겠죠?"
+                            onChange={onChange}
+                            className="profileIntroduce"
+                        />
+                        <span className="profileIntroduceCount">
+                            {introduce.length}/400
+                        </span>
+                    </div>
                 </div>
                 <div>
                     <h3 className="profileSubtitle">카카오톡 아이디</h3>
                     <input
                         type="text"
+                        minLength="4"
+                        maxLength="15"
                         name="kakaoTalkId"
                         placeholder="정확하게 입력하였는지 다시 한 번 확인해주세요"
                         onChange={onChange}
