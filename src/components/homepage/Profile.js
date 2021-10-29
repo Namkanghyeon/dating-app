@@ -84,9 +84,7 @@ const Profile = ({ userObj, myProfileObj, yourProfileObj, matchMode }) => {
     return (
         <div
             className={`${
-                like
-                    ? `${ok && yourOk ? "loveBox" : "selectedBox"}`
-                    : "messageBox"
+                like ? `${ok && yourOk ? "loveBox" : "selectedBox"}` : "box"
             }`}
         >
             <h4>

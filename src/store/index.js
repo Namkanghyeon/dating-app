@@ -8,7 +8,7 @@ import currentPageReducer from "./currentPageReducer";
 const persistConfig = {
     key: "root",
     storage: storageSession,
-    whitelist: ["profileReducer"],
+    whitelist: ["profileReducer", "currentPageReducer"],
 };
 
 const rootReducer = combineReducers({

@@ -42,9 +42,7 @@ form {
 
 .container {
     width: 100%;
-    max-width: 300px;
-    display: flex;
-    flex-direction: column;
+    width: 300px;
 }
 
 .title {
@@ -61,14 +59,14 @@ form {
     cursor: default;
 }
 
-.messageBox {
+.box {
     max-width: 300px;
     text-align: center;
     border: #00ff77 2px solid;
     border-radius: 10px;
     padding: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     line-height: 150%;
 }
 
@@ -78,8 +76,8 @@ form {
     border: #00ffff 3px dashed;
     border-radius: 10px;
     padding: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     line-height: 150%;
 }
 
@@ -89,8 +87,8 @@ form {
     border: #00ffff 4px solid;
     border-radius: 10px;
     padding: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     line-height: 150%;
 }
 

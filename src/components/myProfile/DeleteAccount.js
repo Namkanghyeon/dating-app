@@ -98,7 +98,7 @@ const DeleteAccount = ({ userObj, profileObj }) => {
             ) : (
                 <div>
                     <h2 className="title">회원 탈퇴</h2>
-                    <div className="messageBox">
+                    <div className="box">
                         <ul>계정을 삭제하시겠습니까?</ul>
                     </div>
                     <div className="deleteAccountButtons">
