@@ -8,6 +8,7 @@ import MyProfile from "routes/MyProfile";
 import SignUp from "routes/SignUp";
 
 import { useSelector, shallowEqual } from "react-redux";
+import CreateProfile from "./myProfile/CreateProfile";
 
 const AppRouter = ({ userObj }) => {
     const { profileObj } = useSelector(
@@ -19,17 +20,13 @@ const AppRouter = ({ userObj }) => {
     return (
         <HashRouter>
             {userObj && Object.keys(profileObj).length !== 0 && <Navigation />}
+            {userObj && Object.keys(profileObj).length === 0 && (
+                <div className="outline">
+                    <CreateProfile userObj={userObj} isNoProfileUser={true} />
+                </div>
+            )}
             <Switch>
-                <div
-                    style={{
-                        maxWidth: 300,
-                        width: "100%",
-                        margin: "0 auto",
-                        marginTop: 80,
-                        display: "flex",
-                        justifyContent: "center",
-                    }}
-                >
+                <div className="outline">
                     <Route exact path="/">
                         {userObj ? <Home userObj={userObj} /> : <LogIn />}
                     </Route>

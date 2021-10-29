@@ -122,7 +122,6 @@ const EditProfile = ({ userObj, profileObj }) => {
             } = finishedEvent;
             setAttachment(result);
         };
-
         reader.readAsDataURL(file);
     };
 

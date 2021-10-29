@@ -31,6 +31,15 @@ form {
     width: 100%;
 }
 
+.outline {
+    max-width: 300px;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+}
+
 .container {
     width: 100%;
     max-width: 300px;

@@ -11,19 +11,17 @@ const Home = ({ userObj }) => {
         shallowEqual
     );
     return (
-        <>
-            <div className="container">
-                {profileObj ? (
-                    profileObj.gender === "Female" ? (
-                        <FemaleHome userObj={userObj} profileObj={profileObj} />
-                    ) : (
-                        <MaleHome userObj={userObj} profileObj={profileObj} />
-                    )
+        <div className="container">
+            {profileObj ? (
+                profileObj.gender === "Female" ? (
+                    <FemaleHome userObj={userObj} profileObj={profileObj} />
                 ) : (
-                    "loading..."
-                )}
-            </div>
-        </>
+                    <MaleHome userObj={userObj} profileObj={profileObj} />
+                )
+            ) : (
+                "loading..."
+            )}
+        </div>
     );
 };
 

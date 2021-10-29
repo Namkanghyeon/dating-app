@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { dbService, storageService } from "fbase";
 import { v4 } from "uuid";
 import { doc, setDoc } from "@firebase/firestore";
@@ -9,7 +9,8 @@ import { Redirect } from "react-router";
 import { useDispatch } from "react-redux";
 import { redux_setProfile } from "store/profileReducer";
 
-const CreateProfile = ({ userCred }) => {
+const CreateProfile = ({ userCred, userObj, isNoProfileUser }) => {
+    const [uid, setUid] = useState("");
     const [name, setName] = useState("");
     const [gender, setGender] = useState("");
     const [age, setAge] = useState("20");
@@ -24,6 +25,14 @@ const CreateProfile = ({ userCred }) => {
     const dispatch = useDispatch();
     const redux_setProfileObj = (profileObj) =>
         dispatch(redux_setProfile(profileObj));
+
+    useEffect(() => {
+        if (isNoProfileUser) {
+            setUid(userObj.uid);
+        } else {
+            setUid(userCred.user.uid);
+        }
+    }, []);
 
     const onSubmit = async (event) => {
         event.preventDefault();
@@ -41,10 +50,7 @@ const CreateProfile = ({ userCred }) => {
         } else {
             let attachmentUrl = "";
             if (attachment !== "") {
-                const attachmentRef = ref(
-                    storageService,
-                    `${userCred.user.uid}/${v4()}`
-                );
+                const attachmentRef = ref(storageService, `${uid}/${v4()}`);
                 const response = await uploadString(
                     attachmentRef,
                     attachment,
@@ -69,12 +75,9 @@ const CreateProfile = ({ userCred }) => {
                 matchedPartners: [],
             };
             redux_setProfileObj(newProfileObj);
-            await setDoc(
-                doc(dbService, "profiles", userCred.user.uid),
-                newProfileObj
-            );
+            await setDoc(doc(dbService, "profiles", uid), newProfileObj);
             setAttachment("");
-            fileInput.current.value = "";
+            // fileInput.current.value = "";
             setDone(true);
         }
     };
@@ -122,8 +125,8 @@ const CreateProfile = ({ userCred }) => {
             } = finishedEvent;
             setAttachment(result);
         };
-
         reader.readAsDataURL(file);
+        console.log("onPhotoChange: ", fileInput.current.value);
     };
 
     const onClearAttachment = () => {
