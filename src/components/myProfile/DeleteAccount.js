@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router";
+import { Redirect } from "react-router";
 import { authService, dbService, storageService } from "fbase";
 import {
     deleteUser,
@@ -9,14 +9,14 @@ import {
 import { doc, deleteDoc } from "@firebase/firestore";
 import { ref, deleteObject } from "@firebase/storage";
 import { useDispatch } from "react-redux";
-import { redux_purgeProfile } from "store/profileReducer";
-import { PURGE } from "redux-persist";
+import { redux_clearProfile } from "store/profileReducer";
+import { redux_setCurrentPage } from "store/currentPageReducer";
 
 const DeleteAccount = ({ userObj, profileObj }) => {
     const [reLogin, setReLogin] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const history = useHistory();
+    const [done, setDone] = useState(false);
 
     useEffect(() => {
         return () => {
@@ -27,14 +27,17 @@ const DeleteAccount = ({ userObj, profileObj }) => {
     }, []);
 
     const dispatch = useDispatch();
-    const redux_clearProfile = dispatch(redux_purgeProfile());
+    const setCurrentPageStore = (currentPage) =>
+        dispatch(redux_setCurrentPage(currentPage));
+    const clearProfileStore = () => dispatch(redux_clearProfile());
 
     const onYesClick = () => setReLogin(true);
 
     const onSubmit = async (event) => {
         event.preventDefault();
         if (event.target.value === "no") {
-            history.push("/");
+            setCurrentPageStore(1);
+            setDone(true);
         } else {
             const user = authService.currentUser;
             const credential = EmailAuthProvider.credential(email, password);
@@ -45,8 +48,9 @@ const DeleteAccount = ({ userObj, profileObj }) => {
                     );
                     await deleteDoc(doc(dbService, "profiles", userObj.uid));
                     await deleteUser(authService.currentUser);
-                    redux_clearProfile();
-                    history.push("/");
+                    clearProfileStore();
+                    setCurrentPageStore(1);
+                    setDone(true);
                 })
                 .catch(() => {
                     alert("로그인 정보가 바르지 않습니다.");
@@ -126,6 +130,7 @@ const DeleteAccount = ({ userObj, profileObj }) => {
                     </div>
                 </div>
             )}
+            {done && <Redirect to="/" />}
         </div>
     );
 };

@@ -1,6 +1,6 @@
-import { PURGE } from "redux-persist";
 // 액션 타입
 const SET_PROFILE = "profileReducer/SET_PROFILE";
+const CLEAR_PROFILE = "profileReducer/CLEAR_PROFILE";
 
 // 액션 생성함수
 export const redux_setProfile = (profileObj) => {
@@ -10,10 +10,9 @@ export const redux_setProfile = (profileObj) => {
     };
 };
 
-export const redux_purgeProfile = () => {
+export const redux_clearProfile = () => {
     return {
-        type: PURGE,
-        profileObj: {},
+        type: CLEAR_PROFILE,
     };
 };
 
@@ -24,14 +23,15 @@ const initialState = {
 
 // 리듀서
 export default function profileReducer(state = initialState, action) {
+    console.log("State: ", state, " Action: ", action);
     switch (action.type) {
         case SET_PROFILE:
             return {
                 ...state,
                 profileObj: action.profileObj,
             };
-        case PURGE:
-            return { profileObj: {} };
+        case CLEAR_PROFILE:
+            return initialState;
         default:
             return state;
     }

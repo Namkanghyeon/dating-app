@@ -2,7 +2,7 @@
 const SET_PAGE = "currentPageReducer/SET_PAGE";
 
 // 액션 생성함수
-export const redux_setPage = (currentPage) => {
+export const redux_setCurrentPage = (currentPage) => {
     return {
         type: SET_PAGE,
         currentPage: currentPage,

@@ -1,13 +1,12 @@
 import React from "react";
 import { HashRouter, Switch, Route } from "react-router-dom";
+import { useSelector, shallowEqual } from "react-redux";
 import Navigation from "components/common/Navigation";
 import Home from "routes/Home";
 import LogIn from "routes/LogIn";
 import Matched from "routes/Matched";
 import MyProfile from "routes/MyProfile";
 import SignUp from "routes/SignUp";
-
-import { useSelector, shallowEqual } from "react-redux";
 import CreateProfile from "./myProfile/CreateProfile";
 
 const AppRouter = ({ userObj }) => {

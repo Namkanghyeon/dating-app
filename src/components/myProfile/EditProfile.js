@@ -13,7 +13,7 @@ import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
 import { Redirect } from "react-router";
 import { useDispatch } from "react-redux";
 import { redux_setProfile } from "store/profileReducer";
-import { redux_setPage } from "store/currentPageReducer";
+import { redux_setCurrentPage } from "store/currentPageReducer";
 
 const EditProfile = ({ userObj, profileObj }) => {
     const [name, setName] = useState("");
@@ -35,8 +35,8 @@ const EditProfile = ({ userObj, profileObj }) => {
     const dispatch = useDispatch();
     const redux_setProfileObj = (_profileObj) =>
         dispatch(redux_setProfile(_profileObj));
-    const redux_setCurrentPage = (currentPage) =>
-        dispatch(redux_setPage(currentPage));
+    const setCurrentPageStore = (currentPage) =>
+        dispatch(redux_setCurrentPage(currentPage));
 
     const onSubmit = async (event) => {
         event.preventDefault();
@@ -91,7 +91,7 @@ const EditProfile = ({ userObj, profileObj }) => {
             );
             setAttachment("");
             fileInput.current.value = "";
-            redux_setCurrentPage(1);
+            setCurrentPageStore(1);
             setDone(true);
         }
     };

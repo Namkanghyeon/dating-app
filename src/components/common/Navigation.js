@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSeedling, faHeart, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, useDispatch } from "react-redux";
-import { redux_setPage } from "store/currentPageReducer";
+import { redux_setCurrentPage } from "store/currentPageReducer";
 
 const Navigation = () => {
     const dispatch = useDispatch();
-    const redux_setCurrentPage = (currentPage) =>
-        dispatch(redux_setPage(currentPage));
+    const setCurrentPageStore = (currentPage) =>
+        dispatch(redux_setCurrentPage(currentPage));
 
     const currentPage = useSelector(
         (state) => state.currentPageReducer.currentPage
@@ -25,7 +25,7 @@ const Navigation = () => {
                     <Link
                         to="/"
                         className="navigation-link"
-                        onClick={() => redux_setCurrentPage(1)}
+                        onClick={() => setCurrentPageStore(1)}
                     >
                         <FontAwesomeIcon icon={faSeedling} size="3x" />
                         <span style={{ marginTop: 5 }}>Home</span>
@@ -39,7 +39,7 @@ const Navigation = () => {
                     <Link
                         to="/matched"
                         className="navigation-link"
-                        onClick={() => redux_setCurrentPage(2)}
+                        onClick={() => setCurrentPageStore(2)}
                     >
                         <FontAwesomeIcon icon={faHeart} size="3x" />
                         <span style={{ marginTop: 5 }}>Matched</span>
@@ -53,7 +53,7 @@ const Navigation = () => {
                     <Link
                         to="/myprofile"
                         className="navigation-link"
-                        onClick={() => redux_setCurrentPage(3)}
+                        onClick={() => setCurrentPageStore(3)}
                     >
                         <FontAwesomeIcon icon={faUser} size="3x" />
                         <span style={{ marginTop: 5 }}>My profile</span>
