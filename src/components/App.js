@@ -44,7 +44,7 @@ function App() {
             {ready ? (
                 <AppRouter userObj={userObj} />
             ) : (
-                <div style={{ marginTop: 20 }}>"loading..."</div>
+                <div style={{ marginTop: 20 }}>loading...</div>
             )}
         </>
     );

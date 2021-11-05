@@ -19,16 +19,32 @@ const AppRouter = ({ userObj }) => {
     );
     return (
         <HashRouter>
-            {userObj && Object.keys(profileObj).length !== 0 && <Navigation />}
-            {userObj && Object.keys(profileObj).length === 0 && (
-                <div className="outline">
-                    <CreateProfile userObj={userObj} isNoProfileUser={true} />
-                </div>
+            {userObj && (
+                <>
+                    {Object.keys(profileObj).length ? (
+                        <Navigation />
+                    ) : (
+                        <div className="outline">
+                            <CreateProfile
+                                userObj={userObj}
+                                isNoProfileUser={true}
+                            />
+                        </div>
+                    )}
+                </>
             )}
             <Switch>
                 <div className="outline">
                     <Route exact path="/">
-                        {userObj ? <Home userObj={userObj} /> : <LogIn />}
+                        {userObj ? (
+                            <>
+                                {Object.keys(profileObj).length && (
+                                    <Home userObj={userObj} />
+                                )}
+                            </>
+                        ) : (
+                            <LogIn />
+                        )}
                     </Route>
                     <Route exact path="/matched">
                         <Matched userObj={userObj} />
@@ -37,7 +53,7 @@ const AppRouter = ({ userObj }) => {
                         <MyProfile userObj={userObj} />
                     </Route>
                     <Route exact path="/signup">
-                        <SignUp />
+                        {!userObj ? <SignUp /> : <div> </div>}
                     </Route>
                 </div>
             </Switch>

@@ -34,47 +34,65 @@ const Profile = ({ userObj, myProfileObj, yourProfileObj, matchMode }) => {
 
     const onLikeClick = async (event) => {
         event.preventDefault();
-        if (yourProfileObj.gender === "Female") {
-            const newFemaleMatchedPartners = yourProfileObj.matchedPartners;
-            newFemaleMatchedPartners.push({ id: userObj.uid, ok: false });
-            await updateDoc(doc(dbService, "profiles", yourProfileObj.id), {
-                matchedPartners: newFemaleMatchedPartners,
-            });
-            const newLiking = myProfileObj.liking;
-            newLiking.push(yourProfileObj.id);
-            const newMatchedPartners = myProfileObj.matchedPartners;
-            newMatchedPartners.push({ id: yourProfileObj.id, ok: false });
-            await updateDoc(doc(dbService, "profiles", userObj.uid), {
-                liking: newLiking,
-                matchedPartners: newMatchedPartners,
-            });
+        if (myProfileObj.gender === "Male") {
+            if (
+                window.confirm(
+                    "좋아요를 누르시겠어요? 서로의 사진이 공개되며, 되돌리기는 불가능합니다."
+                )
+            ) {
+                const newFemaleMatchedPartners = yourProfileObj.matchedPartners;
+                newFemaleMatchedPartners.push({ id: userObj.uid, ok: false });
+                await updateDoc(doc(dbService, "profiles", yourProfileObj.id), {
+                    matchedPartners: newFemaleMatchedPartners,
+                });
+                const newLiking = myProfileObj.liking;
+                newLiking.push(yourProfileObj.id);
+                const newMatchedPartners = myProfileObj.matchedPartners;
+                newMatchedPartners.push({ id: yourProfileObj.id, ok: false });
+                await updateDoc(doc(dbService, "profiles", userObj.uid), {
+                    liking: newLiking,
+                    matchedPartners: newMatchedPartners,
+                });
+                setLike(true);
+            }
         } else {
-            const newLiked = yourProfileObj.liked;
-            newLiked.push(userObj.uid);
-            await updateDoc(doc(dbService, "profiles", yourProfileObj.id), {
-                liked: newLiked,
-            });
-            const newLiking = myProfileObj.liking;
-            newLiking.push(yourProfileObj.id);
-            await updateDoc(doc(dbService, "profiles", userObj.uid), {
-                liking: newLiking,
-            });
+            if (
+                window.confirm(
+                    "좋아요를 누르시겠어요? 상대방도 수락 시 서로의 사진이 공개되며, 되돌리기는 불가능합니다."
+                )
+            ) {
+                const newLiked = yourProfileObj.liked;
+                newLiked.push(userObj.uid);
+                await updateDoc(doc(dbService, "profiles", yourProfileObj.id), {
+                    liked: newLiked,
+                });
+                const newLiking = myProfileObj.liking;
+                newLiking.push(yourProfileObj.id);
+                await updateDoc(doc(dbService, "profiles", userObj.uid), {
+                    liking: newLiking,
+                });
+                setLike(true);
+            }
         }
-
-        setLike(true);
     };
 
     const onOkClick = async () => {
-        const newMatchedPartners = myProfileObj.matchedPartners;
-        newMatchedPartners.map((newMatchedPartner) => {
-            if (newMatchedPartner.id === yourProfileObj.id) {
-                newMatchedPartner.ok = true;
-            }
-        });
-        await updateDoc(doc(dbService, "profiles", userObj.uid), {
-            matchedPartners: newMatchedPartners,
-        });
-        setOk(true);
+        if (
+            window.confirm(
+                "좋아요를 누르시겠어요? 상대방도 수락 시 서로의 카카오톡 아이디가 공개되며, 되돌리기는 불가능합니다."
+            )
+        ) {
+            const newMatchedPartners = myProfileObj.matchedPartners;
+            newMatchedPartners.map((newMatchedPartner) => {
+                if (newMatchedPartner.id === yourProfileObj.id) {
+                    newMatchedPartner.ok = true;
+                }
+            });
+            await updateDoc(doc(dbService, "profiles", userObj.uid), {
+                matchedPartners: newMatchedPartners,
+            });
+            setOk(true);
+        }
     };
 
     const toggleDetailMode = () => {
@@ -107,7 +125,7 @@ const Profile = ({ userObj, myProfileObj, yourProfileObj, matchMode }) => {
                             {!ok ? (
                                 <button
                                     onClick={onOkClick}
-                                    className="likeButton"
+                                    className="loveButton"
                                 >
                                     <FontAwesomeIcon icon={faHeart} size="2x" />
                                 </button>
@@ -115,23 +133,30 @@ const Profile = ({ userObj, myProfileObj, yourProfileObj, matchMode }) => {
                                 <>
                                     {yourOk ? (
                                         <>
-                                            <h3>
-                                                {yourProfileObj.name}님도{" "}
-                                                {myProfileObj.name}님이 마음에
-                                                드셨나봐요. 축하드려요!! 좋은
-                                                인연 되시길 바랄게요~
-                                            </h3>
                                             <h4>
-                                                {yourProfileObj.name}님의
-                                                카카오톡 ID:{" "}
+                                                {yourProfileObj.name}님도{" "}
+                                                {myProfileObj.name}님이 <br />
+                                                마음에 드셨나봐요. 축하드려요!!
+                                                <br />
+                                                좋은 인연 되시길 바랄게요~
+                                            </h4>
+                                            <h4 className="kakaoIdBox">
+                                                <span
+                                                    style={{ fontWeight: 800 }}
+                                                >
+                                                    {yourProfileObj.name}님의
+                                                    카카오톡 id
+                                                </span>
+                                                <br />
                                                 {yourProfileObj.kakaoTalkId}
                                             </h4>
                                         </>
                                     ) : (
-                                        <h5>
-                                            상대방도 수락 시 서로의 카카오톡
-                                            아이디가 공개됩니다.
-                                        </h5>
+                                        <div>
+                                            {yourProfileObj.name}님의 응답을
+                                            <br />
+                                            기다리는 중입니다.
+                                        </div>
                                     )}
                                 </>
                             )}

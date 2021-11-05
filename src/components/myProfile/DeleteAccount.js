@@ -8,6 +8,9 @@ import {
 } from "@firebase/auth";
 import { doc, deleteDoc } from "@firebase/firestore";
 import { ref, deleteObject } from "@firebase/storage";
+import { useDispatch } from "react-redux";
+import { redux_purgeProfile } from "store/profileReducer";
+import { PURGE } from "redux-persist";
 
 const DeleteAccount = ({ userObj, profileObj }) => {
     const [reLogin, setReLogin] = useState(false);
@@ -22,6 +25,9 @@ const DeleteAccount = ({ userObj, profileObj }) => {
             setPassword("");
         };
     }, []);
+
+    const dispatch = useDispatch();
+    const redux_clearProfile = dispatch(redux_purgeProfile());
 
     const onYesClick = () => setReLogin(true);
 
@@ -39,6 +45,7 @@ const DeleteAccount = ({ userObj, profileObj }) => {
                     );
                     await deleteDoc(doc(dbService, "profiles", userObj.uid));
                     await deleteUser(authService.currentUser);
+                    redux_clearProfile();
                     history.push("/");
                 })
                 .catch(() => {

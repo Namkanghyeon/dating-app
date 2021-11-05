@@ -1,3 +1,4 @@
+import { PURGE } from "redux-persist";
 // 액션 타입
 const SET_PROFILE = "profileReducer/SET_PROFILE";
 
@@ -6,6 +7,13 @@ export const redux_setProfile = (profileObj) => {
     return {
         type: SET_PROFILE,
         profileObj: profileObj,
+    };
+};
+
+export const redux_purgeProfile = () => {
+    return {
+        type: PURGE,
+        profileObj: {},
     };
 };
 
@@ -22,6 +30,8 @@ export default function profileReducer(state = initialState, action) {
                 ...state,
                 profileObj: action.profileObj,
             };
+        case PURGE:
+            return { profileObj: {} };
         default:
             return state;
     }

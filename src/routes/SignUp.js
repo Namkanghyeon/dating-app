@@ -88,7 +88,6 @@ const SignUp = () => {
                     {error && <span className="authError">{error}</span>}
                 </form>
             )}
-            {isLoggedIn && <CreateProfile userCred={userCred} />}
         </>
     );
 };
