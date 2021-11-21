@@ -38,7 +38,6 @@ const FemaleHome = ({ userObj, profileObj }) => {
 
     return (
         <div>
-            <h2 className="title">마음에 드는 프로필에 하트를 보내세요!</h2>
             {maleProfileObjs.map((maleProfileObj) => (
                 <Profile
                     key={maleProfileObj.id}

@@ -56,7 +56,7 @@ const Navigation = () => {
                         onClick={() => setCurrentPageStore(3)}
                     >
                         <FontAwesomeIcon icon={faUser} size="3x" />
-                        <span style={{ marginTop: 5 }}>My profile</span>
+                        <span style={{ marginTop: 5 }}>My Page</span>
                     </Link>
                 </li>
             </ul>

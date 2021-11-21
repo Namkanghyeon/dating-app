@@ -76,7 +76,7 @@ const DeleteAccount = ({ userObj, profileObj }) => {
             {reLogin ? (
                 <div>
                     <h2 className="title">계정 정보 확인</h2>
-                    <div className="authContainer">
+                    <div className="logInContainer">
                         <form onSubmit={onSubmit} className="container">
                             <input
                                 name="email"
@@ -86,7 +86,7 @@ const DeleteAccount = ({ userObj, profileObj }) => {
                                 required
                                 value={email}
                                 onChange={onChange}
-                                className="authInput"
+                                className="logInInput"
                             />
                             <input
                                 name="password"
@@ -96,36 +96,35 @@ const DeleteAccount = ({ userObj, profileObj }) => {
                                 required
                                 value={password}
                                 onChange={onChange}
-                                className="authInput"
+                                className="logInInput"
                             />
                             <input
                                 type="submit"
                                 value={"계정 삭제"}
-                                className="authInput authSubmit"
+                                className="logInInput logInButton"
                             />
                         </form>
                     </div>
                 </div>
             ) : (
                 <div>
-                    <h2 className="title">회원 탈퇴</h2>
-                    <div className="box">
+                    <div className="deleteConfirmBox">
                         <ul>계정을 삭제하시겠습니까?</ul>
                     </div>
                     <div className="deleteAccountButtons">
                         <button
                             value="yes"
                             onClick={onYesClick}
-                            className="deleteAccountButton deleteYes"
+                            className="deleteYesButton"
                         >
-                            네!
+                            네
                         </button>
                         <button
                             value="no"
                             onClick={onSubmit}
-                            className="deleteAccountButton"
+                            className="deleteNoButton"
                         >
-                            안할래요!
+                            다시 생각해볼게요
                         </button>
                     </div>
                 </div>

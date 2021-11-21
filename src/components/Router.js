@@ -1,11 +1,11 @@
 import React from "react";
 import { HashRouter, Switch, Route } from "react-router-dom";
 import { useSelector, shallowEqual } from "react-redux";
-import Navigation from "components/common/Navigation";
+import Navigation from "components/Navigation";
 import Home from "routes/Home";
 import LogIn from "routes/LogIn";
 import Matched from "routes/Matched";
-import MyProfile from "routes/MyProfile";
+import MyPage from "routes/MyPage";
 import SignUp from "routes/SignUp";
 import CreateProfile from "./myProfile/CreateProfile";
 
@@ -33,7 +33,7 @@ const AppRouter = ({ userObj }) => {
                 </>
             )}
             <Switch>
-                <div className="outline">
+                <div className="outline forNavigation">
                     <Route exact path="/">
                         {userObj ? (
                             <>
@@ -49,7 +49,7 @@ const AppRouter = ({ userObj }) => {
                         <Matched userObj={userObj} />
                     </Route>
                     <Route exact path="/myprofile">
-                        <MyProfile userObj={userObj} />
+                        <MyPage userObj={userObj} />
                     </Route>
                     <Route exact path="/signup">
                         {!userObj ? <SignUp /> : <div> </div>}

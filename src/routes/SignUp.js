@@ -37,10 +37,22 @@ const SignUp = () => {
                 });
                 setIsLoggedIn(true);
             } catch (error) {
-                setError(error.message);
+                if (
+                    error.message ===
+                    "Firebase: Error (auth/email-already-in-use)."
+                ) {
+                    alert("이미 사용 중인 이메일입니다.");
+                } else if (
+                    error.message ===
+                    "Firebase: Password should be at least 6 characters (auth/weak-password)."
+                ) {
+                    alert("비밀번호는 최소 여섯 자리여야 합니다.");
+                    setPassword("");
+                }
+                //setError(error.message);
             }
         } else {
-            alert("비밀번호를 다시 확인해주세요");
+            alert("두 비밀번호가 일치하지 않습니다.");
             setPassword("");
             setPasswordConfirm("");
         }
@@ -49,7 +61,7 @@ const SignUp = () => {
     return (
         <>
             {!isLoggedIn && (
-                <form onSubmit={onSubmit} className="authContainer">
+                <form onSubmit={onSubmit} className="logInContainer">
                     <input
                         name="email"
                         type="email"
@@ -58,7 +70,7 @@ const SignUp = () => {
                         required
                         value={email}
                         onChange={onChange}
-                        className="authInput"
+                        className="logInInput"
                     />
                     <input
                         name="password"
@@ -68,7 +80,7 @@ const SignUp = () => {
                         required
                         value={password}
                         onChange={onChange}
-                        className="authInput"
+                        className="logInInput"
                     />
                     <input
                         name="passwordConfirm"
@@ -78,12 +90,12 @@ const SignUp = () => {
                         required
                         value={passwordConfirm}
                         onChange={onChange}
-                        className="authInput"
+                        className="logInInput"
                     />
                     <input
                         type="submit"
                         value={"회원가입"}
-                        className="authInput authSubmit"
+                        className="logInInput logInButton"
                     />
                     {error && <span className="authError">{error}</span>}
                 </form>

@@ -1,68 +1,62 @@
-.authContainer {
+.logInContainer {
     width: 100%;
     display: flex;
     flex-direction: column;
-    /* height: 100vh; */
-    /* justify-content: center; */
-    /* align-items: center; */
 }
 
-.logo {
-    color: #00ff77;
-    margin-bottom: 10;
-}
-
-.login {
-    color: #00ff77;
-    font-size: 32px;
-    font-weight: 800;
+.logInTitle {
+    display: flex;
     margin-bottom: 20px;
+    color: #fff5b7;
 }
 
-.authInput {
-    max-width: 300px;
+.logInLogo {
+    margin-right: 10px;
+}
+
+.logInServiceName {
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.logInInput {
+    display: flex;
     width: 100%;
     padding: 10px;
-    border: 1px solid #00ff77;
     border-radius: 20px;
     background-color: #ffffff;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     font-size: 12px;
-    color: black;
+    color: #808080;
 }
 
-.authSubmit {
+.logInButton {
+    justify-content: center;
     text-align: center;
-    background: #00ff77;
-    color: #ffffff;
-    margin-top: 10;
+    background: #ffbbb0;
     cursor: pointer;
+    color: #ffffff;
     font-size: 16px;
+    margin-top: 10px;
+    padding: 5px;
 }
 
 .signUp {
     display: flex;
-    align-items: center;
     justify-content: flex-end;
 }
 
 .signUpButton {
+    width: 30%;
     text-align: center;
-    background: #ffffff;
-    color: #00ff77;
-    border: #00ff77 3px solid;
+    background: #b45a05;
     cursor: pointer;
+    color: #ffffff;
     font-size: 16px;
     align-items: left;
     border-radius: 20px;
     padding: 5px;
-    margin-left: 20px;
-}
-
-.authError {
-    color: #ff0000;
-    text-align: center;
-    font-weight: 500;
-    font-size: 12px;
-    margin-top: 10px;
+    margin-top: 5px;
+    border: none;
+    outline: 0;
 }

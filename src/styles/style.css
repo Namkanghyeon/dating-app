@@ -12,10 +12,10 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
         Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     font-size: 16px;
+    background-color: #e99479;
 }
 
 button {
-    border: #00ff77 1px solid;
     background-color: #ffffff;
     color: #000000;
 }
@@ -33,9 +33,12 @@ form {
     max-width: 300px;
     width: 100%;
     margin: 0 auto;
-    margin-top: 80px;
     display: flex;
     justify-content: center;
+}
+
+.forNavigation {
+    margin-top: 80px;
 }
 
 .container {
@@ -46,7 +49,7 @@ form {
 .title {
     display: flex;
     justify-content: center;
-    background-color: #00ff77;
+    background-color: #b45a05;
     color: #ffffff;
     font-size: 16px;
     padding: 10px;
@@ -60,7 +63,7 @@ form {
 .box {
     max-width: 300px;
     text-align: center;
-    border: #00ff77 2px solid;
+    background-color: #e9c39f;
     border-radius: 10px;
     padding: 20px;
     margin-top: 10px;
@@ -71,7 +74,8 @@ form {
 .selectedBox {
     max-width: 300px;
     text-align: center;
-    border: #00ffff 3px dashed;
+    border: #b45a05 3px dashed;
+    background-color: #e9c39f;
     border-radius: 10px;
     padding: 20px;
     margin-top: 10px;
@@ -82,7 +86,8 @@ form {
 .loveBox {
     max-width: 300px;
     text-align: center;
-    border: #00ffff 4px solid;
+    border: #b45a05 4px solid;
+    background-color: #e9c39f;
     border-radius: 10px;
     padding: 20px;
     margin-top: 10px;
@@ -92,7 +97,7 @@ form {
 
 .kakaoIdBox {
     text-align: center;
-    border: #00ffff 2px solid;
+    border: #b45a05 2px solid;
     border-radius: 10px;
     padding: 5px;
     margin-top: 5px;
@@ -102,7 +107,7 @@ form {
 .introduceBox {
     max-width: 280px;
     text-align: justify;
-    border: #00ff77 1px solid;
+    border: #b45a05 1px solid;
     border-radius: 10px;
     padding: 20px;
     margin-top: 20px;
@@ -117,7 +122,7 @@ form {
     width: 80px;
     height: 40px;
     margin: 10px;
-    border: #00ff77 3px solid;
+    border: #b45a05 3px solid;
     border-radius: 10px;
 }
 
@@ -127,7 +132,7 @@ form {
     width: 80px;
     height: 40px;
     margin: 10px;
-    border: #00ffff 3px solid;
+    border: #b45a05 3px solid;
     border-radius: 10px;
 }
 
@@ -135,6 +140,6 @@ form {
     width: 50;
     height: 30;
     margin-top: 10px;
-    color: #808080;
+    color: #b45a05;
     font-size: 14px;
 }

@@ -46,7 +46,8 @@ const Matched = ({ userObj }) => {
 
     return (
         <div className="container">
-            <span className="title">매칭된 상대</span>
+            {/* /<span className="title">매칭된 상대</span> */}
+            {!matches && <span>아직 매칭된 상대가 없습니다.</span>}
             {matches.map((match) => (
                 <Profile
                     key={match.id}

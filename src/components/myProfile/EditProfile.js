@@ -47,7 +47,7 @@ const EditProfile = ({ userObj, profileObj }) => {
             alert("자기소개를 입력해주세요");
         } else if (kakaoTalkId === "") {
             alert("카카오톡 아이디를 입력해주세요");
-        } else {
+        } else if (window.confirm("프로필을 수정하시겠습니까?")) {
             let attachmentUrl = profileObj.attachmentUrl;
 
             if (attachment !== attachmentUrl) {
@@ -127,7 +127,6 @@ const EditProfile = ({ userObj, profileObj }) => {
 
     return (
         <div>
-            <h2 className="title">프로필 수정</h2>
             <form onSubmit={onSubmit} className="profileComponents">
                 <div>
                     <h3 className="profileSubtitle">이름</h3>
@@ -135,7 +134,8 @@ const EditProfile = ({ userObj, profileObj }) => {
                         type="text"
                         maxLength="20"
                         name="name"
-                        value={name}
+                        //value={name}
+                        defaultValue={name}
                         onChange={onChange}
                         className="profileInput"
                     />
@@ -147,7 +147,8 @@ const EditProfile = ({ userObj, profileObj }) => {
                             type="text"
                             maxLength="400"
                             name="introduce"
-                            value={introduce}
+                            //value={introduce}
+                            defaultValue={introduce}
                             onChange={onChange}
                             className="profileIntroduce "
                         />
@@ -163,7 +164,8 @@ const EditProfile = ({ userObj, profileObj }) => {
                         minLength="4"
                         maxLength="20"
                         name="kakaoTalkId"
-                        value={kakaoTalkId}
+                        //value={kakaoTalkId}
+                        defaultValue={kakaoTalkId}
                         onChange={onChange}
                         className="profileInput"
                     />
@@ -188,7 +190,11 @@ const EditProfile = ({ userObj, profileObj }) => {
                 <div className="profileAttachment">
                     <img src={attachment} alt="" />
                 </div>
-                <input type="submit" value="수정" className="profileButton" />
+                <input
+                    type="submit"
+                    value="수정"
+                    className="profileEditButton"
+                />
             </form>
             {done && <Redirect to="/" />}
         </div>

@@ -64,7 +64,7 @@ const CreateProfile = ({ userCred, userObj, isNoProfileUser }) => {
                 name: name,
                 gender: gender,
                 age: age,
-                height: height,
+                //height: height,
                 school: school,
                 introduce: introduce,
                 kakaoTalkId: kakaoTalkId,
@@ -187,7 +187,7 @@ const CreateProfile = ({ userCred, userObj, isNoProfileUser }) => {
                         <option value="29"> 29</option>
                     </select>
                 </div>
-                <div>
+                {/* <div>
                     <h3 className="profileSubtitle">키</h3>
                     <select
                         name="height"
@@ -205,7 +205,7 @@ const CreateProfile = ({ userCred, userObj, isNoProfileUser }) => {
                         <option value="185-190"> 185 이상 190 미만 </option>
                         <option value="190-"> 190 이상</option>
                     </select>
-                </div>
+                </div> */}
                 <div>
                     <h3 className="profileSubtitle">학교</h3>
                     <select

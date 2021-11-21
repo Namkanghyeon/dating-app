@@ -8,7 +8,6 @@ import { faSeedling } from "@fortawesome/free-solid-svg-icons";
 const LogIn = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
 
     const onChange = (event) => {
         const {
@@ -26,7 +25,22 @@ const LogIn = () => {
         try {
             await signInWithEmailAndPassword(authService, email, password);
         } catch (error) {
-            setError(error.message);
+            console.log(error.message);
+            console.log(error);
+            if (error.message === "Firebase: Error (auth/user-not-found).") {
+                alert("등록되지 않은 이메일입니다. 다시 한번 확인해 주세요.");
+            } else if (
+                error.message === "Firebase: Error (auth/wrong-password)."
+            ) {
+                alert("비밀번호가 틀립니다. 다시 한번 확인해 주세요.");
+                setPassword("");
+            } else {
+                alert(
+                    "짧은 시간 동안 너무 많은 로그인 시도가 발생했습니다. 잠시 후에 다시 시도해 주세요."
+                );
+                setEmail("");
+                setPassword("");
+            }
         }
     };
 
@@ -38,43 +52,47 @@ const LogIn = () => {
     }, []);
 
     return (
-        <div className="authContainer">
-            <FontAwesomeIcon icon={faSeedling} size="2x" className="logo" />
-            <h2 className="login">Log In</h2>
-            <form onSubmit={onSubmit} className="container">
+        <div className="logInContainer">
+            <span className="logInTitle">
+                <FontAwesomeIcon
+                    icon={faSeedling}
+                    size="2x"
+                    className="logInLogo"
+                />
+                <h2 className="logInServiceName">First Day</h2>
+            </span>
+            <form onSubmit={onSubmit}>
                 <input
                     name="email"
                     type="email"
                     maxLength="60"
-                    placeholder="Email"
+                    placeholder="이메일"
                     required
                     value={email}
                     onChange={onChange}
-                    className="authInput"
+                    className="logInInput"
                 />
                 <input
                     name="password"
                     type="password"
                     maxLength="20"
-                    placeholder="Password"
+                    placeholder="비밀번호"
                     required
                     value={password}
                     onChange={onChange}
-                    className="authInput"
+                    className="logInInput"
                 />
                 <input
                     type="submit"
                     value={"로그인"}
-                    className="authInput authSubmit"
+                    className="logInInput logInButton"
                 />
             </form>
             <form className="signUp">
-                <span style={{ fontSize: "12px" }}>또는</span>
                 <button className="signUpButton">
                     <Link to="/signup">회원가입</Link>
                 </button>
             </form>
-            {error && <span className="authError">{error}</span>}
         </div>
     );
 };

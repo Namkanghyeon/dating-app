@@ -23,7 +23,6 @@ const MaleHome = ({ userObj, profileObj }) => {
 
     return (
         <div>
-            <h2 className="title">홈</h2>
             {femaleProfileObjs.map((femaleProfileObj) => (
                 <Profile
                     key={femaleProfileObj.id}
