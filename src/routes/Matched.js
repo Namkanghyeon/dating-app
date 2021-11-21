@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router";
 import { dbService } from "fbase";
 import {
     collection,
@@ -7,11 +8,17 @@ import {
     where,
     documentId,
 } from "@firebase/firestore";
-import { useSelector, shallowEqual } from "react-redux";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import Profile from "components/homepage/Profile";
+import { redux_setCurrentPage } from "store/currentPageReducer";
 
 const Matched = ({ userObj }) => {
     const [matches, setMatches] = useState([]);
+    const history = useHistory();
+
+    const dispatch = useDispatch();
+    const setCurrentPageStore = (currentPage) =>
+        dispatch(redux_setCurrentPage(currentPage));
 
     const { profileObj } = useSelector(
         (state) => ({
@@ -19,6 +26,10 @@ const Matched = ({ userObj }) => {
         }),
         shallowEqual
     );
+
+    useEffect(() => {
+        setCurrentPageStore(2);
+    }, []);
 
     useEffect(() => {
         if (profileObj.matchedPartners.length !== 0) {

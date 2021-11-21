@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { authService } from "fbase";
 import { useHistory, Redirect } from "react-router";
 import DeleteAccount from "components/myProfile/DeleteAccount";
@@ -24,6 +24,10 @@ const MyPage = ({ userObj }) => {
         }),
         shallowEqual
     );
+
+    useEffect(() => {
+        setCurrentPageStore(3);
+    }, []);
 
     const onEditProfileClick = () => {
         console.log("edit profile");

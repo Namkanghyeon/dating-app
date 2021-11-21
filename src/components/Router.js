@@ -1,6 +1,8 @@
 import React from "react";
 import { HashRouter, Switch, Route } from "react-router-dom";
-import { useSelector, shallowEqual } from "react-redux";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import { redux_clearProfile } from "store/profileReducer";
+import { redux_setCurrentPage } from "store/currentPageReducer";
 import Navigation from "components/Navigation";
 import Home from "routes/Home";
 import LogIn from "routes/LogIn";
@@ -16,6 +18,11 @@ const AppRouter = ({ userObj }) => {
         }),
         shallowEqual
     );
+
+    const dispatch = useDispatch();
+    const setCurrentPageStore = (currentPage) =>
+        dispatch(redux_setCurrentPage(currentPage));
+
     return (
         <HashRouter>
             {userObj && (
