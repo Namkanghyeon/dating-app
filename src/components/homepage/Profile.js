@@ -133,13 +133,7 @@ const Profile = ({ userObj, myProfileObj, yourProfileObj, matchMode }) => {
                                 <>
                                     {yourOk ? (
                                         <>
-                                            <h4>
-                                                {yourProfileObj.name}님도{" "}
-                                                {myProfileObj.name}님이 <br />
-                                                마음에 드셨나봐요. 축하드려요!!
-                                                <br />
-                                                좋은 인연 되시길 바랄게요~
-                                            </h4>
+                                            <h4>매칭 완료</h4>
                                             <h4 className="kakaoIdBox">
                                                 <span
                                                     style={{ fontWeight: 800 }}
