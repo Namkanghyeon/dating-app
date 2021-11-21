@@ -23,6 +23,11 @@ const MaleHome = ({ userObj, profileObj }) => {
 
     return (
         <div>
+            {femaleProfileObjs.length === 0 && (
+                <h2 className="noMatchMessage">
+                    * 아직 받은 1차 매칭신청이 없습니다 *
+                </h2>
+            )}
             {femaleProfileObjs.map((femaleProfileObj) => (
                 <Profile
                     key={femaleProfileObj.id}

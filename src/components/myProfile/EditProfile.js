@@ -190,11 +190,7 @@ const EditProfile = ({ userObj, profileObj }) => {
                 <div className="profileAttachment">
                     <img src={attachment} alt="" />
                 </div>
-                <input
-                    type="submit"
-                    value="수정"
-                    className="profileEditButton"
-                />
+                <input type="submit" value="수정" className="profileButton" />
             </form>
             {done && <Redirect to="/" />}
         </div>

@@ -37,6 +37,8 @@
     font-size: 16px;
     color: #000000;
     align-items: center;
+    border: none;
+    outline: 0;
 }
 
 .profileGender {
@@ -99,7 +101,7 @@ input[type="radio"]:checked {
     border-radius: 50%;
 }
 
-.profileEditButton {
+.profileButton {
     text-align: center;
     background-color: #b45a05;
     border-radius: 10px;
@@ -132,7 +134,7 @@ input[type="radio"]:checked {
 .deleteConfirmBox {
     max-width: 300px;
     text-align: center;
-    background-color: #b45a05;
+    background-color: #ffbbb0;
     color: #ffffff;
     border-radius: 10px;
     padding: 20px;

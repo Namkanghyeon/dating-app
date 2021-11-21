@@ -60,6 +60,12 @@ form {
     cursor: default;
 }
 
+.noMatchMessage {
+    margin-top: 20px;
+    text-align: center;
+    color: #df5900;
+}
+
 .box {
     max-width: 300px;
     text-align: center;

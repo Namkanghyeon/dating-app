@@ -76,7 +76,7 @@ const SignUp = () => {
                         name="password"
                         type="password"
                         maxLength="20"
-                        placeholder="비밀번호"
+                        placeholder="비밀번호 (6-20자)"
                         required
                         value={password}
                         onChange={onChange}

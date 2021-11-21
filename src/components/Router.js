@@ -19,7 +19,7 @@ const AppRouter = ({ userObj }) => {
     return (
         <HashRouter>
             {userObj && (
-                <>
+                <div>
                     {Object.keys(profileObj).length ? (
                         <Navigation />
                     ) : (
@@ -30,17 +30,17 @@ const AppRouter = ({ userObj }) => {
                             />
                         </div>
                     )}
-                </>
+                </div>
             )}
             <Switch>
                 <div className="outline forNavigation">
                     <Route exact path="/">
                         {userObj ? (
-                            <>
+                            <div>
                                 {Object.keys(profileObj).length && (
                                     <Home userObj={userObj} />
                                 )}
-                            </>
+                            </div>
                         ) : (
                             <LogIn />
                         )}

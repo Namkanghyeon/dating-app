@@ -14,7 +14,7 @@ const CreateProfile = ({ userCred, userObj, isNoProfileUser }) => {
     const [name, setName] = useState("");
     const [gender, setGender] = useState("");
     const [age, setAge] = useState("20");
-    const [height, setHeight] = useState("-150");
+    //const [height, setHeight] = useState("-150");
     const [school, setSchool] = useState("한양대");
     const [introduce, setIntroduce] = useState("");
     const [kakaoTalkId, setKakaoTalkId] = useState("");
@@ -96,9 +96,9 @@ const CreateProfile = ({ userCred, userObj, isNoProfileUser }) => {
             case "age":
                 setAge(value);
                 break;
-            case "height":
-                setHeight(value);
-                break;
+            // case "height":
+            //     setHeight(value);
+            //     break;
             case "school":
                 setSchool(value);
                 break;
@@ -278,7 +278,7 @@ const CreateProfile = ({ userCred, userObj, isNoProfileUser }) => {
                             className="profileLabel"
                             onClick={onClearAttachment}
                         >
-                            <span>사진 제거</span>
+                            <span style={{ marginTop: 5 }}>사진 제거</span>
                             <FontAwesomeIcon icon={faTimes} />
                         </div>
                     </div>

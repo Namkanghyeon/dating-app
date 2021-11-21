@@ -139,7 +139,7 @@ const Profile = ({ userObj, myProfileObj, yourProfileObj, matchMode }) => {
                                                     style={{ fontWeight: 800 }}
                                                 >
                                                     {yourProfileObj.name}님의
-                                                    카카오톡 id
+                                                    카카오톡 ID
                                                 </span>
                                                 <br />
                                                 {yourProfileObj.kakaoTalkId}
