@@ -42,11 +42,15 @@ const EditProfile = ({ userObj, profileObj }) => {
         event.preventDefault();
 
         if (name === "") {
-            alert("이름을 입력해주세요");
+            alert("이름을 입력해주세요.");
+        } else if (name.length < 2) {
+            alert("2자 이상의 이름을 입력해주세요.");
         } else if (introduce === "") {
-            alert("자기소개를 입력해주세요");
+            alert("자기소개를 입력해주세요.");
         } else if (kakaoTalkId === "") {
-            alert("카카오톡 아이디를 입력해주세요");
+            alert("카카오톡 아이디를 입력해주세요.");
+        } else if (kakaoTalkId.length < 4) {
+            alert("정확한 카카오톡 아이디를 입력해주세요.");
         } else if (window.confirm("프로필을 수정하시겠습니까?")) {
             let attachmentUrl = profileObj.attachmentUrl;
 

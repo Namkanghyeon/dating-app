@@ -1,8 +1,6 @@
 import React from "react";
 import { HashRouter, Switch, Route } from "react-router-dom";
-import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import { redux_clearProfile } from "store/profileReducer";
-import { redux_setCurrentPage } from "store/currentPageReducer";
+import { useSelector, shallowEqual } from "react-redux";
 import Navigation from "components/Navigation";
 import Home from "routes/Home";
 import LogIn from "routes/LogIn";
@@ -18,10 +16,6 @@ const AppRouter = ({ userObj }) => {
         }),
         shallowEqual
     );
-
-    const dispatch = useDispatch();
-    const setCurrentPageStore = (currentPage) =>
-        dispatch(redux_setCurrentPage(currentPage));
 
     return (
         <HashRouter>
@@ -40,28 +34,33 @@ const AppRouter = ({ userObj }) => {
                 </div>
             )}
             <Switch>
-                <div className="outline forNavigation">
-                    <Route exact path="/">
-                        {userObj ? (
-                            <div>
-                                {Object.keys(profileObj).length && (
-                                    <Home userObj={userObj} />
-                                )}
-                            </div>
-                        ) : (
-                            <LogIn />
-                        )}
-                    </Route>
-                    <Route exact path="/matched">
-                        <Matched userObj={userObj} />
-                    </Route>
-                    <Route exact path="/myprofile">
-                        <MyPage userObj={userObj} />
-                    </Route>
-                    <Route exact path="/signup">
-                        {!userObj ? <SignUp /> : <div> </div>}
-                    </Route>
-                </div>
+                <>
+                    <div className="outline forNavigation">
+                        <Route exact path="/">
+                            {userObj ? (
+                                <div>
+                                    {Object.keys(profileObj).length !== 0 && (
+                                        <>
+                                            {console.log("before home")}
+                                            <Home userObj={userObj} />
+                                        </>
+                                    )}
+                                </div>
+                            ) : (
+                                <LogIn />
+                            )}
+                        </Route>
+                        <Route exact path="/matched">
+                            <Matched userObj={userObj} />
+                        </Route>
+                        <Route exact path="/myprofile">
+                            <MyPage userObj={userObj} />
+                        </Route>
+                        <Route exact path="/signup">
+                            {!userObj && <SignUp />}
+                        </Route>
+                    </div>
+                </>
             </Switch>
         </HashRouter>
     );

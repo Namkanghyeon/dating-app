@@ -38,15 +38,19 @@ const CreateProfile = ({ userCred, userObj, isNoProfileUser }) => {
         event.preventDefault();
 
         if (name === "") {
-            alert("이름을 입력해주세요");
+            alert("이름을 입력해주세요.");
+        } else if (name.length < 2) {
+            alert("2자 이상의 이름을 입력해주세요.");
         } else if (gender === "") {
-            alert("성별을 선택해주세요");
+            alert("성별을 선택해주세요.");
         } else if (introduce === "") {
-            alert("자기소개를 입력해주세요");
+            alert("자기소개를 입력해주세요.");
         } else if (kakaoTalkId === "") {
-            alert("카카오톡 아이디를 입력해주세요");
+            alert("카카오톡 아이디를 입력해주세요.");
+        } else if (kakaoTalkId.length < 4) {
+            alert("정확한 카카오톡 아이디를 입력해주세요.");
         } else if (attachment === "") {
-            alert("사진을 등록해주세요");
+            alert("사진을 등록해주세요.");
         } else {
             let attachmentUrl = "";
             if (attachment !== "") {
@@ -142,7 +146,6 @@ const CreateProfile = ({ userCred, userObj, isNoProfileUser }) => {
                     <h3 className="profileSubtitle">이름</h3>
                     <input
                         type="text"
-                        minLength="2"
                         maxLength="20"
                         name="name"
                         onChange={onChange}
@@ -237,8 +240,7 @@ const CreateProfile = ({ userCred, userObj, isNoProfileUser }) => {
                     <h3 className="profileSubtitle">카카오톡 아이디</h3>
                     <input
                         type="text"
-                        minLength="4"
-                        maxLength="15"
+                        maxLength="20"
                         name="kakaoTalkId"
                         placeholder="정확하게 입력하였는지 다시 한 번 확인해주세요"
                         onChange={onChange}
