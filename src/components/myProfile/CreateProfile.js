@@ -242,7 +242,6 @@ const CreateProfile = ({ userCred, userObj, isNoProfileUser }) => {
                         type="text"
                         maxLength="20"
                         name="kakaoTalkId"
-                        placeholder="정확히 입력해주세요."
                         onChange={onChange}
                         className="profileInput"
                     />
