@@ -32,7 +32,7 @@
         "build": "react-scripts build",
         "eject": "react-scripts eject",
         "predeploy": "npm run build",
-        "deploy": "firebase build"
+        "deploy": "gh-pages -d build"
     },
     "eslintConfig": {
         "extends": [
@@ -52,5 +52,5 @@
             "last 1 safari version"
         ]
     },
-    "homepage": "."
+    "homepage": "https://Namkanghyeon.github.io/firebase"
 }

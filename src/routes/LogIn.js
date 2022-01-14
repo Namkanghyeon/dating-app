@@ -59,7 +59,7 @@ const LogIn = () => {
                     size="2x"
                     className="logInLogo"
                 />
-                <h2 className="logInServiceName">First Day</h2>
+                <h2 className="logInServiceName">데이팅앱</h2>
             </span>
             <form onSubmit={onSubmit}>
                 <input
@@ -85,7 +85,8 @@ const LogIn = () => {
                 <input
                     type="submit"
                     value={"로그인"}
-                    className="logInInput logInButton"
+                    className="logInInput"
+                    // className="logInInput logInButton"
                 />
             </form>
             <form className="signUp">
