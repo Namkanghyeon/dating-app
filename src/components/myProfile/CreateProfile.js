@@ -222,7 +222,7 @@ const CreateProfile = ({ userCred, userObj, isNoProfileUser }) => {
                 </div>
                 <div>
                     <h3 className="profileSubtitle">자기소개</h3>
-                    <div className="profileIntroducWithoutIndent">
+                    <div className="profileInputWithoutIndent">
                         <textarea
                             type="text"
                             maxLength="400"
