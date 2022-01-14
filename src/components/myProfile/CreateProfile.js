@@ -229,7 +229,7 @@ const CreateProfile = ({ userCred, userObj, isNoProfileUser }) => {
                             name="introduce"
                             placeholder="관심사, 취미, 좋아하는 것, 연애 가치관 등을 적어주세요! (최대 400자)&#13;&#10;성의있게 작성할 수록 매칭 확률도 높아지겠죠?"
                             onChange={onChange}
-                            className="profileIntroduce"
+                            className="profileIntroducWithoutIndent"
                         />
                         <span className="profileIntroduceCount">
                             {introduce.length}/400
@@ -242,7 +242,7 @@ const CreateProfile = ({ userCred, userObj, isNoProfileUser }) => {
                         type="text"
                         maxLength="20"
                         name="kakaoTalkId"
-                        placeholder="정확하게 입력하였는지 다시 한 번 확인해주세요"
+                        placeholder="정확히 입력해주세요."
                         onChange={onChange}
                         className="profileInput"
                     />

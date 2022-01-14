@@ -154,7 +154,7 @@ const EditProfile = ({ userObj, profileObj }) => {
                             //value={introduce}
                             defaultValue={introduce}
                             onChange={onChange}
-                            className="profileIntroduce "
+                            className="profileIntroducWithoutIndent "
                         />
                         <span className="profileIntroduceCount">
                             {introduce.length}/400
