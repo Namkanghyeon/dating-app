@@ -222,14 +222,14 @@ const CreateProfile = ({ userCred, userObj, isNoProfileUser }) => {
                 </div>
                 <div>
                     <h3 className="profileSubtitle">자기소개</h3>
-                    <div className="profileInput">
+                    <div className="profileIntroducWithoutIndent">
                         <textarea
                             type="text"
                             maxLength="400"
                             name="introduce"
                             placeholder="관심사, 취미, 좋아하는 것, 연애 가치관 등을 적어주세요! (최대 400자)&#13;&#10;성의있게 작성할 수록 매칭 확률도 높아지겠죠?"
                             onChange={onChange}
-                            className="profileIntroducWithoutIndent"
+                            className="profileIntroduce"
                         />
                         <span className="profileIntroduceCount">
                             {introduce.length}/400

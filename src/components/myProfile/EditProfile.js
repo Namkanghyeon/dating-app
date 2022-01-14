@@ -146,7 +146,7 @@ const EditProfile = ({ userObj, profileObj }) => {
                 </div>
                 <div>
                     <h3 className="profileSubtitle">자기소개</h3>
-                    <div className="profileInput">
+                    <div className="profileIntroducWithoutIndent">
                         <textarea
                             type="text"
                             maxLength="400"
@@ -154,7 +154,7 @@ const EditProfile = ({ userObj, profileObj }) => {
                             //value={introduce}
                             defaultValue={introduce}
                             onChange={onChange}
-                            className="profileIntroducWithoutIndent "
+                            className="profileIntroduce "
                         />
                         <span className="profileIntroduceCount">
                             {introduce.length}/400

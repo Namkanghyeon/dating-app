@@ -82,7 +82,7 @@ const DeleteAccount = ({ userObj, profileObj }) => {
                                 name="email"
                                 type="email"
                                 maxLength="60"
-                                placeholder="Email"
+                                placeholder="이메일"
                                 required
                                 value={email}
                                 onChange={onChange}
@@ -92,7 +92,7 @@ const DeleteAccount = ({ userObj, profileObj }) => {
                                 name="password"
                                 type="password"
                                 maxLength="20"
-                                placeholder="Password"
+                                placeholder="비밀번호"
                                 required
                                 value={password}
                                 onChange={onChange}
