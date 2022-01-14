@@ -85,8 +85,7 @@ const LogIn = () => {
                 <input
                     type="submit"
                     value={"로그인"}
-                    className="logInInput"
-                    // className="logInInput logInButton"
+                    className="logInInput logInButton"
                 />
             </form>
             <form className="signUp">
