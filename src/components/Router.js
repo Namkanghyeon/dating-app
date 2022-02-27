@@ -40,10 +40,7 @@ const AppRouter = ({ userObj }) => {
                             {userObj ? (
                                 <div>
                                     {Object.keys(profileObj).length !== 0 && (
-                                        <>
-                                            {console.log("before home")}
-                                            <Home userObj={userObj} />
-                                        </>
+                                        <Home userObj={userObj} />
                                     )}
                                 </div>
                             ) : (

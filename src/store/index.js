@@ -1,7 +1,7 @@
-import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
-//import storage from "redux-persist/lib/storage";
 import storageSession from "redux-persist/lib/storage/session";
+import { combineReducers } from "redux";
+// 내 reducer들
 import profileReducer from "./profileReducer";
 import currentPageReducer from "./currentPageReducer";
 
@@ -16,5 +16,5 @@ const rootReducer = combineReducers({
     currentPageReducer,
 });
 
-//export default rootReducer;
+// persist 사용하려면 export default rootReducer; 대신 persistReducer에 config 같이 넣어서 사용
 export default persistReducer(persistConfig, rootReducer);

@@ -1,7 +1,7 @@
-// 액션 타입
+// 액션 타입들
 const SET_PAGE = "currentPageReducer/SET_PAGE";
 
-// 액션 생성함수
+// 액션 생성함수들
 export const redux_setCurrentPage = (currentPage) => {
     return {
         type: SET_PAGE,

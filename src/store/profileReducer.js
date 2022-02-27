@@ -1,8 +1,8 @@
-// 액션 타입
+// 액션 타입들
 const SET_PROFILE = "profileReducer/SET_PROFILE";
 const CLEAR_PROFILE = "profileReducer/CLEAR_PROFILE";
 
-// 액션 생성함수
+// 액션 생성함수들
 export const redux_setProfile = (profileObj) => {
     return {
         type: SET_PROFILE,
@@ -23,7 +23,6 @@ const initialState = {
 
 // 리듀서
 export default function profileReducer(state = initialState, action) {
-    console.log("State: ", state, " Action: ", action);
     switch (action.type) {
         case SET_PROFILE:
             return {
