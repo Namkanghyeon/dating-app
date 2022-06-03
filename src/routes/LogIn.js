@@ -25,8 +25,6 @@ const LogIn = () => {
         try {
             await signInWithEmailAndPassword(authService, email, password);
         } catch (error) {
-            console.log(error.message);
-            console.log(error);
             if (error.message === "Firebase: Error (auth/user-not-found).") {
                 alert("등록되지 않은 이메일입니다. 다시 한번 확인해 주세요.");
             } else if (

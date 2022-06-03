@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { useSelector, shallowEqual } from "react-redux";
 import Navigation from "components/Navigation";
 import Home from "routes/Home";
@@ -18,7 +18,7 @@ const AppRouter = ({ userObj }) => {
     );
 
     return (
-        <HashRouter>
+        <BrowserRouter>
             {userObj && (
                 <div>
                     {Object.keys(profileObj).length ? (
@@ -59,7 +59,7 @@ const AppRouter = ({ userObj }) => {
                     </div>
                 </>
             </Switch>
-        </HashRouter>
+        </BrowserRouter>
     );
 };
 

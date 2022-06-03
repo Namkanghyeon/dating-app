@@ -22,7 +22,6 @@ const Home = ({ userObj }) => {
 
     return (
         <div className="container">
-            {console.log("home page")}
             {profileObj ? (
                 profileObj.gender === "Female" ? (
                     <FemaleHome userObj={userObj} profileObj={profileObj} />

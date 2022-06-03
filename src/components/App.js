@@ -24,7 +24,7 @@ function App() {
 
     useEffect(() => {
         setPersistence(authService, browserSessionPersistence);
-        authService.onAuthStateChanged(async (user) => {
+        authService.onAuthStateChanged((user) => {
             //새로고침하면 다시 호출됨
             if (user) {
                 setUserObj({

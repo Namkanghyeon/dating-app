@@ -30,12 +30,10 @@ const MyPage = ({ userObj }) => {
     }, []);
 
     const onEditProfileClick = () => {
-        console.log("edit profile");
         setEditMode(true);
     };
 
     const onLogOutClick = () => {
-        console.log("logout");
         if (window.confirm("로그아웃하시겠습니까?")) {
             authService.signOut();
             setCurrentPageStore(1);
@@ -44,14 +42,8 @@ const MyPage = ({ userObj }) => {
     };
 
     const onDeleteClick = () => {
-        console.log("delete account");
         setDeleteMode(true);
     };
-
-    // const onPasswordClick = () => {
-    //     console.log("change password");
-    //     setPasswordMode(true);
-    // };
 
     return (
         <div>

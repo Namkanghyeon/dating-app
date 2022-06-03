@@ -130,7 +130,6 @@ const CreateProfile = ({ userCred, userObj, isNoProfileUser }) => {
             setAttachment(result);
         };
         reader.readAsDataURL(file);
-        console.log("onPhotoChange: ", fileInput.current.value);
     };
 
     const onClearAttachment = () => {
