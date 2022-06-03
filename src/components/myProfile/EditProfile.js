@@ -21,7 +21,6 @@ const EditProfile = ({ userObj, profileObj }) => {
   const [name, setName] = useState('');
   const [introduce, setIntroduce] = useState('');
   const [kakaoTalkId, setKakaoTalkId] = useState('');
-  const [done, setDone] = useState(false);
   const [attachment, setAttachment] = useState('');
   const fileInput = useRef();
 
@@ -89,7 +88,6 @@ const EditProfile = ({ userObj, profileObj }) => {
       setAttachment('');
       fileInput.current.value = '';
       setCurrentPageStore(1);
-      setDone(true);
       navigate('/home');
     }
   };
@@ -190,7 +188,6 @@ const EditProfile = ({ userObj, profileObj }) => {
         </div>
         <input type="submit" value="수정" className="profileButton" />
       </form>
-      {/* {done && <Redirect to="/" />} */}
     </div>
   );
 };

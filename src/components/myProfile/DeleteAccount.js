@@ -18,7 +18,6 @@ const DeleteAccount = ({ userObj, profileObj }) => {
   const [reLogin, setReLogin] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [done, setDone] = useState(false);
 
   useEffect(() => {
     return () => {
@@ -39,7 +38,6 @@ const DeleteAccount = ({ userObj, profileObj }) => {
     event.preventDefault();
     if (event.target.value === 'no') {
       setCurrentPageStore(1);
-      setDone(true);
       navigate('/home');
     } else {
       const user = authService.currentUser;
@@ -51,7 +49,6 @@ const DeleteAccount = ({ userObj, profileObj }) => {
           await deleteUser(authService.currentUser);
           clearProfileStore();
           setCurrentPageStore(1);
-          setDone(true);
           navigate('/');
         })
         .catch(() => {
@@ -127,7 +124,6 @@ const DeleteAccount = ({ userObj, profileObj }) => {
           </div>
         </div>
       )}
-      {/* {done && <Redirect to="/" />} */}
     </div>
   );
 };

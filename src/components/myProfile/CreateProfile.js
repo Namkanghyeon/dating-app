@@ -20,7 +20,6 @@ const CreateProfile = ({ userCred, userObj, isNoProfileUser }) => {
   const [school, setSchool] = useState('한양대');
   const [introduce, setIntroduce] = useState('');
   const [kakaoTalkId, setKakaoTalkId] = useState('');
-  const [done, setDone] = useState(false);
   const [attachment, setAttachment] = useState('');
   const fileInput = useRef();
 
@@ -83,7 +82,6 @@ const CreateProfile = ({ userCred, userObj, isNoProfileUser }) => {
       await setDoc(doc(dbService, 'profiles', uid), newProfileObj);
       setAttachment('');
       // fileInput.current.value = "";
-      setDone(true);
       navigate('/home');
     }
   };
@@ -276,7 +274,6 @@ const CreateProfile = ({ userCred, userObj, isNoProfileUser }) => {
         )}
         <input type="submit" value="생성" className="profileButton" />
       </form>
-      {/* {done && <Redirect to="/" />} */}
     </div>
   );
 };

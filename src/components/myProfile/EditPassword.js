@@ -14,14 +14,12 @@ const EditPassword = () => {
 
   const [newPassword, setNewPassword] = useState('');
   const [newPasswordConfirm, setNewPasswordConfirm] = useState('');
-  const [done, setDone] = useState(false);
 
   const onSubmit = (event) => {
     event.preventDefault();
     if (newPassword === newPasswordConfirm) {
       const user = authService.currentUser;
       updatePassword(user, newPassword);
-      setDone(true);
       navigate('/home');
     } else {
       alert('비밀번호를 다시 한번 확인해주세요');
@@ -37,44 +35,35 @@ const EditPassword = () => {
   };
 
   return (
-    <>
-      {done ? (
-        <>
-          <div style={{ marginTop: 20 }}>비밀번호 변경이 완료되었습니다.</div>
-          {/* <Redirect to="/myprofile" /> */}
-        </>
-      ) : (
-        <form
-          onSubmit={onSubmit}
-          className="container"
-          style={{ marginTop: '20px' }}
-        >
-          <div>
-            <input
-              type="password"
-              maxLength="20"
-              placeholder="새로운 비밀번호"
-              onChange={onNewPasswordChange}
-              className="authInput"
-            />
-          </div>
-          <div>
-            <input
-              type="password"
-              maxLength="20"
-              placeholder="비밀번호 확인"
-              onChange={onNewPasswordChangeConfirm}
-              className="authInput"
-            />
-          </div>
-          <input
-            type="submit"
-            value="비밀번호 변경"
-            className="authInput authSubmit"
-          />
-        </form>
-      )}
-    </>
+    <form
+      onSubmit={onSubmit}
+      className="container"
+      style={{ marginTop: '20px' }}
+    >
+      <div>
+        <input
+          type="password"
+          maxLength="20"
+          placeholder="새로운 비밀번호"
+          onChange={onNewPasswordChange}
+          className="authInput"
+        />
+      </div>
+      <div>
+        <input
+          type="password"
+          maxLength="20"
+          placeholder="비밀번호 확인"
+          onChange={onNewPasswordChangeConfirm}
+          className="authInput"
+        />
+      </div>
+      <input
+        type="submit"
+        value="비밀번호 변경"
+        className="authInput authSubmit"
+      />
+    </form>
   );
 };
 
