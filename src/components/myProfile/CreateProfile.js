@@ -66,7 +66,6 @@ const CreateProfile = ({ userCred, userObj, isNoProfileUser }) => {
       }
 
       const newProfileObj = {
-        // 인적사항
         name: name,
         gender: gender,
         age: age,

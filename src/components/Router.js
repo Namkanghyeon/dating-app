@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useSelector, shallowEqual } from 'react-redux';
 import Navigation from 'components/Navigation';
 import Home from 'routes/Home';
@@ -8,6 +8,8 @@ import Matched from 'routes/Matched';
 import MyPage from 'routes/MyPage';
 import SignUp from 'routes/SignUp';
 import CreateProfile from './myProfile/CreateProfile';
+import EditProfile from './myProfile/EditProfile';
+import DeleteAccount from './myProfile/DeleteAccount';
 
 const commonStyle = (props) => {
   return (
@@ -77,7 +79,26 @@ const AppRouter = ({ userObj }) => {
           element={commonStyle(<MyPage userObj={userObj} />)}
         />
         <Route path="/signup" element={commonStyle(<SignUp />)} />
+        <Route
+          path="/create"
+          element={commonStyle(
+            <CreateProfile userObj={userObj} isNoProfileUser={true} />
+          )}
+        />
+        <Route
+          path="/edit"
+          element={commonStyle(
+            <EditProfile userObj={userObj} profileObj={profileObj} />
+          )}
+        />
+        <Route
+          path="/delete"
+          element={commonStyle(
+            <DeleteAccount userObj={userObj} profileObj={profileObj} />
+          )}
+        />
       </Routes>
+      
     </BrowserRouter>
   );
 };

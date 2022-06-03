@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import { useHistory } from "react-router";
-
 import { useNavigate } from 'react-router-dom';
 import { dbService } from "fbase";
 import {
@@ -16,7 +14,6 @@ import { redux_setCurrentPage } from "store/currentPageReducer";
 
 const Matched = ({ userObj }) => {
     const [matches, setMatches] = useState([]);
-    // const history = useHistory();
     const navigate = useNavigate();
 
     const dispatch = useDispatch();

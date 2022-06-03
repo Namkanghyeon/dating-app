@@ -9,7 +9,7 @@ const Navigation = () => {
     { menu: 'My Page', path: '/mypage', icon: faUser },
   ];
 
-  const need_navbar_paths = new Set(['/home', '/matech', '/mypage']);
+  const need_navbar_paths = new Set(['/home', '/matech', '/mypage', '/edit']);
 
   const pathCheck = (match) => {
     return match === window.location.pathname

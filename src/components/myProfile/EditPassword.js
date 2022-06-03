@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { authService } from 'fbase';
 import { updatePassword } from '@firebase/auth';
-// import { Redirect } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 
 //================================================================================
