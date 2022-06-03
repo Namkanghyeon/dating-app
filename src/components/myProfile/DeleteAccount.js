@@ -40,7 +40,7 @@ const DeleteAccount = ({ userObj, profileObj }) => {
     if (event.target.value === 'no') {
       setCurrentPageStore(1);
       setDone(true);
-      navigate('/');
+      navigate('/home');
     } else {
       const user = authService.currentUser;
       const credential = EmailAuthProvider.credential(email, password);

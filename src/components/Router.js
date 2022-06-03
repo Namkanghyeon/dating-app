@@ -30,43 +30,6 @@ const AppRouter = ({ userObj }) => {
   return (
     <BrowserRouter>
       <Navigation />
-      {/* {userObj && (
-        <div>
-          {Object.keys(profileObj).length ? (
-            <Navigation />
-          ) : (
-            <div className="outline">
-              <CreateProfile userObj={userObj} isNoProfileUser={true} />
-            </div>
-          )}
-        </div>
-      )}
-      <Switch>
-        <>
-          <div className="outline forNavigation">
-            <Route exact path="/">
-              {userObj ? (
-                <div>
-                  {Object.keys(profileObj).length !== 0 && (
-                    <Home userObj={userObj} />
-                  )}
-                </div>
-              ) : (
-                <LogIn />
-              )}
-            </Route>
-            <Route exact path="/matched">
-              <Matched userObj={userObj} />
-            </Route>
-            <Route exact path="/myprofile">
-              <MyPage userObj={userObj} />
-            </Route>
-            <Route exact path="/signup">
-              {!userObj && <SignUp />}
-            </Route>
-          </div>
-        </>
-      </Switch> */}
       <Routes>
         <Route path="/" element={commonStyle(<LogIn />)} />
         <Route path="/home" element={commonStyle(<Home userObj={userObj} />)} />
@@ -98,7 +61,6 @@ const AppRouter = ({ userObj }) => {
           )}
         />
       </Routes>
-      
     </BrowserRouter>
   );
 };
