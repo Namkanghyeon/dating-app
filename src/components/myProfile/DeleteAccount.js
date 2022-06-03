@@ -10,7 +10,6 @@ import { doc, deleteDoc } from '@firebase/firestore';
 import { ref, deleteObject } from '@firebase/storage';
 import { useDispatch } from 'react-redux';
 import { redux_clearProfile } from 'store/profileReducer';
-import { redux_setCurrentPage } from 'store/currentPageReducer';
 
 const DeleteAccount = ({ userObj, profileObj }) => {
   const navigate = useNavigate();
@@ -28,8 +27,6 @@ const DeleteAccount = ({ userObj, profileObj }) => {
   }, []);
 
   const dispatch = useDispatch();
-  const setCurrentPageStore = (currentPage) =>
-    dispatch(redux_setCurrentPage(currentPage));
   const clearProfileStore = () => dispatch(redux_clearProfile());
 
   const onYesClick = () => setReLogin(true);
@@ -37,7 +34,6 @@ const DeleteAccount = ({ userObj, profileObj }) => {
   const onSubmit = async (event) => {
     event.preventDefault();
     if (event.target.value === 'no') {
-      setCurrentPageStore(1);
       navigate('/home');
     } else {
       const user = authService.currentUser;
@@ -48,7 +44,6 @@ const DeleteAccount = ({ userObj, profileObj }) => {
           await deleteDoc(doc(dbService, 'profiles', userObj.uid));
           await deleteUser(authService.currentUser);
           clearProfileStore();
-          setCurrentPageStore(1);
           navigate('/');
         })
         .catch(() => {

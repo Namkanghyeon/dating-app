@@ -13,7 +13,6 @@ import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { redux_setProfile } from 'store/profileReducer';
-import { redux_setCurrentPage } from 'store/currentPageReducer';
 
 const EditProfile = ({ userObj, profileObj }) => {
   const navigate = useNavigate();
@@ -36,8 +35,6 @@ const EditProfile = ({ userObj, profileObj }) => {
   const dispatch = useDispatch();
   const redux_setProfileObj = (_profileObj) =>
     dispatch(redux_setProfile(_profileObj));
-  const setCurrentPageStore = (currentPage) =>
-    dispatch(redux_setCurrentPage(currentPage));
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -87,7 +84,6 @@ const EditProfile = ({ userObj, profileObj }) => {
       await updateDoc(doc(dbService, 'profiles', userObj.uid), newProfileObj);
       setAttachment('');
       fileInput.current.value = '';
-      setCurrentPageStore(1);
       navigate('/home');
     }
   };

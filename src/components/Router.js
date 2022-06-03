@@ -37,10 +37,7 @@ const AppRouter = ({ userObj }) => {
           path="/matched"
           element={commonStyle(<Matched userObj={userObj} />)}
         />
-        <Route
-          path="/mypage"
-          element={commonStyle(<MyPage userObj={userObj} />)}
-        />
+        <Route path="/mypage" element={commonStyle(<MyPage />)} />
         <Route path="/signup" element={commonStyle(<SignUp />)} />
         <Route
           path="/create"
