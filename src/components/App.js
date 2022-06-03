@@ -23,7 +23,7 @@ function App() {
     };
 
     useEffect(() => {
-        setPersistence(authService, browserSessionPersistence);
+        setPersistence(authService, browserSessionPersistence); // 세션 종료 시 인증 해제 (로그 아웃)
         authService.onAuthStateChanged((user) => {
             //새로고침하면 다시 호출됨
             if (user) {
