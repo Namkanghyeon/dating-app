@@ -4,7 +4,7 @@ import FemaleHome from 'components/homepage/FemaleHome';
 import MaleHome from 'components/homepage/MaleHome';
 import { useNavigate } from 'react-router-dom';
 
-const Home = ({ userObj }) => {
+export default function Home({ userObj }) {
   const navigate = useNavigate();
 
   const { profileObj } = useSelector(
@@ -20,17 +20,11 @@ const Home = ({ userObj }) => {
 
   return (
     <div className="container">
-      {profileObj ? (
-        profileObj.gender === 'Female' ? (
-          <FemaleHome userObj={userObj} profileObj={profileObj} />
-        ) : (
-          <MaleHome userObj={userObj} profileObj={profileObj} />
-        )
+      {profileObj.gender === 'Female' ? (
+        <FemaleHome userObj={userObj} profileObj={profileObj} />
       ) : (
-        'loading...'
+        <MaleHome userObj={userObj} profileObj={profileObj} />
       )}
     </div>
   );
-};
-
-export default Home;
+}

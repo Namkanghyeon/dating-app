@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 // 3. 바꾸고 재로그인 요구 or 리다이렉트할 때 네비게이션 바 챙기기
 //================================================================================
 
-const EditPassword = () => {
+export default function EditPassword() {
   const navigate = useNavigate();
 
   const [newPassword, setNewPassword] = useState('');
@@ -65,6 +65,4 @@ const EditPassword = () => {
       />
     </form>
   );
-};
-
-export default EditPassword;
+}

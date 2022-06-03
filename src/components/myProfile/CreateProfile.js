@@ -9,14 +9,13 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { redux_setProfile } from 'store/profileReducer';
 
-const CreateProfile = ({ userCred, userObj, isNoProfileUser }) => {
+export default function CreateProfile({ userCred, userObj, isNoProfileUser }) {
   const navigate = useNavigate();
 
   const [uid, setUid] = useState('');
   const [name, setName] = useState('');
   const [gender, setGender] = useState('');
   const [age, setAge] = useState('20');
-  //const [height, setHeight] = useState("-150");
   const [school, setSchool] = useState('한양대');
   const [introduce, setIntroduce] = useState('');
   const [kakaoTalkId, setKakaoTalkId] = useState('');
@@ -68,7 +67,6 @@ const CreateProfile = ({ userCred, userObj, isNoProfileUser }) => {
         name: name,
         gender: gender,
         age: age,
-        //height: height,
         school: school,
         introduce: introduce,
         kakaoTalkId: kakaoTalkId,
@@ -100,9 +98,6 @@ const CreateProfile = ({ userCred, userObj, isNoProfileUser }) => {
       case 'age':
         setAge(value);
         break;
-      // case "height":
-      //     setHeight(value);
-      //     break;
       case 'school':
         setSchool(value);
         break;
@@ -185,25 +180,6 @@ const CreateProfile = ({ userCred, userObj, isNoProfileUser }) => {
             <option value="29"> 29</option>
           </select>
         </div>
-        {/* <div>
-                    <h3 className="profileSubtitle">키</h3>
-                    <select
-                        name="height"
-                        onChange={onChange}
-                        className="profileInput"
-                    >
-                        <option value="-150"> 150 미만 </option>
-                        <option value="150-155"> 150 이상 155 미만 </option>
-                        <option value="155-160"> 155 이상 160 미만 </option>
-                        <option value="160-165"> 160 이상 165 미만 </option>
-                        <option value="165-170"> 165 이상 170 미만 </option>
-                        <option value="170-175"> 170 이상 175 미만 </option>
-                        <option value="175-180"> 175 이상 180 미만 </option>
-                        <option value="180-185"> 180 이상 185 미만 </option>
-                        <option value="185-190"> 185 이상 190 미만 </option>
-                        <option value="190-"> 190 이상</option>
-                    </select>
-                </div> */}
         <div>
           <h3 className="profileSubtitle">학교</h3>
           <select name="school" onChange={onChange} className="profileInput">
@@ -276,6 +252,4 @@ const CreateProfile = ({ userCred, userObj, isNoProfileUser }) => {
       </form>
     </div>
   );
-};
-
-export default CreateProfile;
+}

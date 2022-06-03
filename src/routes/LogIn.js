@@ -5,7 +5,7 @@ import { signInWithEmailAndPassword } from '@firebase/auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSeedling } from '@fortawesome/free-solid-svg-icons';
 
-const LogIn = () => {
+export default function LogIn() {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
@@ -91,5 +91,4 @@ const LogIn = () => {
       </form>
     </div>
   );
-};
-export default LogIn;
+}

@@ -4,7 +4,12 @@ import { doc, updateDoc } from '@firebase/firestore';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
-const Profile = ({ userObj, myProfileObj, yourProfileObj, matchMode }) => {
+export default function Profile({
+  userObj,
+  myProfileObj,
+  yourProfileObj,
+  matchMode,
+}) {
   const [detailMode, setDetailMode] = useState(false);
   const [like, setLike] = useState(false);
   const [ok, setOk] = useState(false);
@@ -181,6 +186,4 @@ const Profile = ({ userObj, myProfileObj, yourProfileObj, matchMode }) => {
       )}
     </div>
   );
-};
-
-export default Profile;
+}

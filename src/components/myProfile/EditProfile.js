@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { redux_setProfile } from 'store/profileReducer';
 
-const EditProfile = ({ userObj, profileObj }) => {
+export default function EditProfile({ userObj, profileObj }) {
   const navigate = useNavigate();
 
   const [name, setName] = useState('');
@@ -186,6 +186,4 @@ const EditProfile = ({ userObj, profileObj }) => {
       </form>
     </div>
   );
-};
-
-export default EditProfile;
+}

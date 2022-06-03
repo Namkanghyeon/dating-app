@@ -9,7 +9,13 @@ export default function Navigation() {
     { menu: 'My Page', path: '/mypage', icon: faUser },
   ];
 
-  const need_navbar_paths = new Set(['/home', '/matched', '/mypage', '/edit', '/delete']);
+  const need_navbar_paths = new Set([
+    '/home',
+    '/matched',
+    '/mypage',
+    '/edit',
+    '/delete',
+  ]);
 
   const location = useLocation();
 

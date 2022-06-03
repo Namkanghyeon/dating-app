@@ -2,7 +2,7 @@ import React from 'react';
 import { authService } from 'fbase';
 import { useNavigate } from 'react-router-dom';
 
-const MyPage = () => {
+export default function MyPage() {
   const navigate = useNavigate();
 
   const onClick = (e) => {
@@ -38,6 +38,4 @@ const MyPage = () => {
       </div>
     </div>
   );
-};
-
-export default MyPage;
+}

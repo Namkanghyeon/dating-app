@@ -6,7 +6,7 @@ import { doc, getDoc } from '@firebase/firestore';
 import { useDispatch } from 'react-redux';
 import { redux_setProfile } from 'store/profileReducer'; // 내 reducer의 action function
 
-function App() {
+export default function App() {
   const [ready, setReady] = useState(false);
   const [userObj, setUserObj] = useState(null);
 
@@ -49,5 +49,3 @@ function App() {
     </>
   );
 }
-
-export default App;

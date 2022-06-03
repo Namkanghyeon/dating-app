@@ -10,7 +10,7 @@ import {
 import { useSelector, shallowEqual } from 'react-redux';
 import Profile from 'components/homepage/Profile';
 
-const Matched = ({ userObj }) => {
+export default function Matched({ userObj }) {
   const [matches, setMatches] = useState([]);
 
   const { profileObj } = useSelector(
@@ -46,7 +46,6 @@ const Matched = ({ userObj }) => {
 
   return (
     <div className="container">
-      {/* /<span className="title">매칭된 상대</span> */}
       {matches.length === 0 && (
         <h2 className="noMatchMessage">* 아직 매칭된 상대가 없습니다 *</h2>
       )}
@@ -61,6 +60,4 @@ const Matched = ({ userObj }) => {
       ))}
     </div>
   );
-};
-
-export default Matched;
+}

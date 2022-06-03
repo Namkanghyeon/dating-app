@@ -3,7 +3,7 @@ import { authService } from 'fbase';
 import { createUserWithEmailAndPassword } from '@firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
-const SignUp = () => {
+export default function SignUp() {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
@@ -11,7 +11,6 @@ const SignUp = () => {
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [error, setError] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userCred, setUserCred] = useState(null);
 
   const onChange = (event) => {
     const {
@@ -31,8 +30,7 @@ const SignUp = () => {
     if (password === passwordConfirm) {
       try {
         await createUserWithEmailAndPassword(authService, email, password).then(
-          (cred) => {
-            setUserCred(cred);
+          () => {
             navigate('/create');
           }
         );
@@ -47,7 +45,7 @@ const SignUp = () => {
           alert('비밀번호는 최소 여섯 자리여야 합니다.');
           setPassword('');
         }
-        //setError(error.message);
+        setError(error.message);
       }
     } else {
       alert('두 비밀번호가 일치하지 않습니다.');
@@ -100,6 +98,4 @@ const SignUp = () => {
       )}
     </>
   );
-};
-
-export default SignUp;
+}

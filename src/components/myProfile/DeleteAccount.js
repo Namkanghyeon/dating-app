@@ -11,7 +11,7 @@ import { ref, deleteObject } from '@firebase/storage';
 import { useDispatch } from 'react-redux';
 import { redux_clearProfile } from 'store/profileReducer';
 
-const DeleteAccount = ({ userObj, profileObj }) => {
+export default function DeleteAccount({ userObj, profileObj }) {
   const navigate = useNavigate();
 
   const [reLogin, setReLogin] = useState(false);
@@ -121,6 +121,4 @@ const DeleteAccount = ({ userObj, profileObj }) => {
       )}
     </div>
   );
-};
-
-export default DeleteAccount;
+}
