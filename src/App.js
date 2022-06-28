@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import AppRouter from 'components/Router'; // 내 router
+import AppRouter from 'Router'; // 내 router
 import { authService, dbService } from 'fbase';
 import { setPersistence, browserSessionPersistence } from '@firebase/auth';
 import { doc, getDoc } from '@firebase/firestore';

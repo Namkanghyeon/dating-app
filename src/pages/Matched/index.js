@@ -8,7 +8,7 @@ import {
   documentId,
 } from '@firebase/firestore';
 import { useSelector, shallowEqual } from 'react-redux';
-import Profile from 'components/homepage/Profile';
+import Profile from 'components/Profile';
 
 export default function Matched({ userObj }) {
   const [matches, setMatches] = useState([]);

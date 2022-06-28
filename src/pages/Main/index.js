@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, shallowEqual } from 'react-redux';
-import FemaleHome from 'components/homepage/FemaleHome';
-import MaleHome from 'components/homepage/MaleHome';
+import FemaleHome from 'pages/Main/FemaleHome';
+import MaleHome from 'pages/Main/MaleHome';
 import { useNavigate } from 'react-router-dom';
 
 export default function Home({ userObj }) {

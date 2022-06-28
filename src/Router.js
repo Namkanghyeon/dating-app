@@ -2,14 +2,14 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useSelector, shallowEqual } from 'react-redux';
 import Navigation from 'components/Navigation';
-import Home from 'routes/Home';
-import LogIn from 'routes/LogIn';
-import Matched from 'routes/Matched';
-import MyPage from 'routes/MyPage';
-import SignUp from 'routes/SignUp';
-import CreateProfile from './myProfile/CreateProfile';
-import EditProfile from './myProfile/EditProfile';
-import DeleteAccount from './myProfile/DeleteAccount';
+import LogIn from 'pages/Login';
+import Home from 'pages/Main';
+import Matched from 'pages/Matched';
+import MyPage from 'pages/MyPage';
+import EditProfile from 'pages/MyPage/EditProfile';
+import DeleteAccount from 'pages/MyPage/DeleteAccount';
+import SignUp from 'pages/Signup';
+import CreateProfile from 'pages/Signup/CreateProfile';
 
 const commonStyle = (props) => {
   return (

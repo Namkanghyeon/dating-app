@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { dbService } from 'fbase';
 import { collection, where, onSnapshot, query } from '@firebase/firestore';
-import Profile from './Profile';
+import Profile from 'components/Profile';
 
 export default function FemaleHome({ userObj, profileObj }) {
   const [maleProfileObjs, setMaleProfileObjs] = useState([]);
