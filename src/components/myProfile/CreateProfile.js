@@ -133,7 +133,7 @@ export default function CreateProfile({ userCred, userObj, isNoProfileUser }) {
   };
 
   return (
-    <div className="container">
+    <div className="container create-profile">
       <h2 className="profileTitle">프로필 생성</h2>
       <form onSubmit={onSubmit} className="profileComponents">
         <div>
