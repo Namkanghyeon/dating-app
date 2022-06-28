@@ -8,8 +8,6 @@ import {
 } from '@firebase/auth';
 import { doc, deleteDoc } from '@firebase/firestore';
 import { ref, deleteObject } from '@firebase/storage';
-import { useDispatch } from 'react-redux';
-import { redux_clearProfile } from 'store/profileReducer';
 
 export default function DeleteAccount({ userObj, profileObj }) {
   const navigate = useNavigate();
@@ -26,9 +24,6 @@ export default function DeleteAccount({ userObj, profileObj }) {
     };
   }, []);
 
-  const dispatch = useDispatch();
-  const clearProfileStore = () => dispatch(redux_clearProfile());
-
   const onYesClick = () => setReLogin(true);
 
   const onSubmit = async (event) => {
@@ -43,7 +38,7 @@ export default function DeleteAccount({ userObj, profileObj }) {
           await deleteObject(ref(storageService, profileObj.attachmentUrl));
           await deleteDoc(doc(dbService, 'profiles', userObj.uid));
           await deleteUser(authService.currentUser);
-          clearProfileStore();
+          window.sessionStorage.clear();
           navigate('/');
         })
         .catch(() => {

@@ -13,6 +13,7 @@ export default function MyPage() {
       case 'logout':
         if (window.confirm('로그아웃하시겠습니까?')) {
           authService.signOut();
+          window.sessionStorage.clear();
           navigate('/');
         }
         break;
@@ -27,7 +28,7 @@ export default function MyPage() {
     <div className="container">
       <div className="myPageButtons">
         <button onClick={onClick} value="edit" className="myPageButtonsChild">
-          프로필 수정
+          내 프로필 조회 / 수정
         </button>
         <button onClick={onClick} value="logout" className="myPageButtonsChild">
           로그아웃
