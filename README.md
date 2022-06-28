@@ -31,7 +31,7 @@ URL: https://namkanghyeon.github.io/
 <img height="240" alt="delete_account" src="https://user-images.githubusercontent.com/26588976/176120464-305f38a5-f809-4f5f-9aa1-ea4a2d9d0312.PNG">
 
 #### 3. 프로필 조회 / 수정
-<img height="240" alt="edit_profile" src="https://user-images.githubusercontent.com/26588976/176120553-e41a6b6f-41fe-4d89-84bf-fbdf0d37f30d.PNG">
+<img height="480" alt="edit_profile" src="https://user-images.githubusercontent.com/26588976/176120553-e41a6b6f-41fe-4d89-84bf-fbdf0d37f30d.PNG">
 
 - 프로필 생성 시 입력했던 정보들을 조회하고 수정할 수 있습니다.
 #### 4. 다른 유저 프로필 조회, 호감 표시
@@ -41,12 +41,14 @@ URL: https://namkanghyeon.github.io/
 
 #### 1. Home
 다른 유저들의 프로필들을 조회할 수 있습니다.
+
 <img height="480" alt="man_home" src="https://user-images.githubusercontent.com/26588976/176120632-4de0cd53-fbb9-4992-9d03-093a016a36d6.PNG">
 
 <img height="480" alt="woman_home" src="https://user-images.githubusercontent.com/26588976/176120638-da3e109d-df51-45f9-a876-ec7604d207f2.PNG">
 
 #### 2. Matched
 1단계 또는 2단계 매칭이 된 유저들의 프로필을 조회할 수 있습니다.
+
 <img height="240" alt="no_matched" src="https://user-images.githubusercontent.com/26588976/176120771-252db915-1634-4ea2-af38-6f18d7ee36f5.PNG">
 
 <img height="480" alt="matched" src="https://user-images.githubusercontent.com/26588976/176120776-218d1174-f753-4408-b06f-38950dcd76a4.PNG">
