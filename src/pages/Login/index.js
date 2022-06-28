@@ -24,24 +24,22 @@ export default function LogIn() {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    try {
-      signInWithEmailAndPassword(authService, email, password).then(() => {
+    signInWithEmailAndPassword(authService, email, password)
+      .then(() => {
         navigate('/home');
+      })
+      .catch((e) => {
+        if (e.code === 'auth/user-not-found') {
+          alert('등록되지 않은 이메일입니다. 다시 한번 확인해 주세요.');
+        } else if (event.code === 'auth/wrong-password') {
+          alert('비밀번호가 틀립니다. 다시 한번 확인해 주세요.');
+          setPassword('');
+        } else if (e.code === 'auth/too-many-requests') {
+          alert(
+            '짧은 시간 동안 너무 많은 로그인 시도가 발생했습니다. 잠시 후에 다시 시도해 주세요.'
+          );
+        }
       });
-    } catch (error) {
-      if (error.message === 'Firebase: Error (auth/user-not-found).') {
-        alert('등록되지 않은 이메일입니다. 다시 한번 확인해 주세요.');
-      } else if (error.message === 'Firebase: Error (auth/wrong-password).') {
-        alert('비밀번호가 틀립니다. 다시 한번 확인해 주세요.');
-        setPassword('');
-      } else {
-        alert(
-          '짧은 시간 동안 너무 많은 로그인 시도가 발생했습니다. 잠시 후에 다시 시도해 주세요.'
-        );
-        setEmail('');
-        setPassword('');
-      }
-    }
   };
 
   useEffect(() => {

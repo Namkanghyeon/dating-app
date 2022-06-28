@@ -35,16 +35,24 @@ export default function DeleteAccount({ userObj, profileObj }) {
       const credential = EmailAuthProvider.credential(email, password);
       await reauthenticateWithCredential(user, credential)
         .then(async () => {
-          await deleteObject(ref(storageService, profileObj.attachmentUrl));
+          try {
+            await deleteObject(ref(storageService, profileObj.attachmentUrl));
+          } catch (e) {}
           await deleteDoc(doc(dbService, 'profiles', userObj.uid));
           await deleteUser(authService.currentUser);
           window.sessionStorage.clear();
           navigate('/');
         })
-        .catch(() => {
-          alert('로그인 정보가 바르지 않습니다.');
-          setEmail('');
-          setPassword('');
+        .catch((e) => {
+          console.log(e.code);
+          if (
+            e.code === 'auth/user-mismatch' ||
+            e.code === 'auth/wrong-password'
+          ) {
+            alert('로그인 정보가 바르지 않습니다.');
+            setEmail('');
+            setPassword('');
+          }
         });
     }
   };
