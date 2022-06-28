@@ -25,8 +25,7 @@ URL: https://namkanghyeon.github.io/
 - 두 비밀번호가 다르거나, 이미 사용 중인 이메일 주소이거나, 비밀번호 형식이 잘못된 경우 메시지를 띄워줍니다.
 - 이메일 주소와 비밀번호가 확인된 이후에는 프로필을 생성합니다.
     - 이름, 나이, 학교, 자기소개, 사진, 카카오톡 아이디 등의 정보를 입력합니다.
-    - 
-<img height="720" alt="create_profile" src="https://user-images.githubusercontent.com/26588976/176120330-daa88079-4008-43db-824c-ffe32cd21607.PNG">
+    <img height="720" alt="create_profile" src="https://user-images.githubusercontent.com/26588976/176120330-daa88079-4008-43db-824c-ffe32cd21607.PNG">
 
 - 회원 탈퇴 시에는 이메일과 비밀번호를 한 번 더 확인한 후 회원정보를 데이터베이스와 스토리지에서 모두 삭제합니다.
 <img height="240" alt="delete_account" src="https://user-images.githubusercontent.com/26588976/176120464-305f38a5-f809-4f5f-9aa1-ea4a2d9d0312.PNG">
