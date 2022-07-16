@@ -35,7 +35,7 @@ export default function Profile({
         }
       }
     });
-  }, []);
+  }, [yourProfileObj]);
 
   const onLikeClick = async (event) => {
     event.preventDefault();
@@ -87,12 +87,20 @@ export default function Profile({
         '좋아요를 누르시겠어요? 상대방도 수락 시 서로의 카카오톡 아이디가 공개되며, 되돌리기는 불가능합니다.'
       )
     ) {
-      const newMatchedPartners = myProfileObj.matchedPartners;
-      newMatchedPartners.forEach((newMatchedPartner) => {
-        if (newMatchedPartner.id === yourProfileObj.id) {
-          newMatchedPartner.ok = true;
+      // const newMatchedPartners = myProfileObj.matchedPartners;
+      // newMatchedPartners.forEach((newMatchedPartner) => {
+      //   if (newMatchedPartner.id === yourProfileObj.id) {
+      //     newMatchedPartner.ok = true;
+      //   }
+      // });
+      const newMatchedPartners = myProfileObj.matchedPartners.map(
+        (newMatchedPartner) => {
+          if (newMatchedPartner.id === yourProfileObj.id) {
+            newMatchedPartner.ok = true;
+          }
+          return newMatchedPartner;
         }
-      });
+      );
       await updateDoc(doc(dbService, 'profiles', userObj.uid), {
         matchedPartners: newMatchedPartners,
       });

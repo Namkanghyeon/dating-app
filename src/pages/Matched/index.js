@@ -42,7 +42,7 @@ export default function Matched({ userObj }) {
         });
       }
     }
-  }, []);
+  }, [profileObj]);
 
   return (
     <div className="container">
