@@ -21,9 +21,9 @@ export default function Home({ userObj }) {
   return (
     <div className="container">
       {profileObj.gender === 'Female' ? (
-        <FemaleHome userObj={userObj} profileObj={profileObj} />
+        <FemaleHome userObj={userObj} />
       ) : (
-        <MaleHome userObj={userObj} profileObj={profileObj} />
+        <MaleHome userObj={userObj} />
       )}
     </div>
   );

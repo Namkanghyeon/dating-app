@@ -3,7 +3,7 @@ import { dbService } from 'fbase';
 import { collection, where, onSnapshot, query } from '@firebase/firestore';
 import Profile from 'components/Profile';
 
-export default function MaleHome({ userObj, profileObj }) {
+export default function MaleHome({ userObj }) {
   const [femaleProfileObjs, setFemaleProfileObjs] = useState([]);
 
   useEffect(() => {
@@ -32,7 +32,6 @@ export default function MaleHome({ userObj, profileObj }) {
         <Profile
           key={femaleProfileObj.id}
           userObj={userObj}
-          myProfileObj={profileObj}
           yourProfileObj={femaleProfileObj}
           matchMode={false}
         />
