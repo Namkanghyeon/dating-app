@@ -167,7 +167,7 @@ export default function Profile({
           )}
           <form>
             <input
-              type="submit"
+              type="button"
               value="간략히"
               onClick={toggleDetailMode}
               className="detailButton"
@@ -177,7 +177,7 @@ export default function Profile({
       ) : (
         <form>
           <input
-            type="submit"
+            type="button"
             value="자세히"
             onClick={toggleDetailMode}
             className="detailButton"
