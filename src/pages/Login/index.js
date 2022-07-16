@@ -22,7 +22,7 @@ export default function LogIn() {
     }
   };
 
-  const onSubmit = async (event) => {
+  const onSubmit = (event) => {
     event.preventDefault();
     signInWithEmailAndPassword(authService, email, password)
       .then(() => {

@@ -14,7 +14,7 @@ export default function App() {
   const redux_setProfileObj = (profileObj) =>
     dispatch(redux_setProfile(profileObj));
 
-  const callProfile = async (user) => {
+  const callProfile = (user) => {
     const docRef = doc(dbService, 'profiles', user.uid);
     onSnapshot(docRef, (snapshot) => {
       redux_setProfileObj(snapshot.data());
