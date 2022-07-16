@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSeedling, faHeart, faUser } from '@fortawesome/free-solid-svg-icons';
+import { nanoid } from 'nanoid';
 
 export default function Navigation() {
   const menu_list = [
@@ -29,7 +30,7 @@ export default function Navigation() {
         <nav className="container">
           <ul className="navigation-container">
             {menu_list.map((menu) => (
-              <li className={pathCheck(menu.path)}>
+              <li key={nanoid()} className={pathCheck(menu.path)}>
                 <Link to={menu.path} className="navigation-link">
                   <FontAwesomeIcon icon={menu.icon} size="3x" />
                   <span style={{ marginTop: 5 }}>{menu.menu}</span>

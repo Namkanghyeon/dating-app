@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { dbService, storageService } from 'fbase';
-import { v4 } from 'uuid';
 import { doc, setDoc } from '@firebase/firestore';
 import { ref, uploadString, getDownloadURL } from '@firebase/storage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,6 +7,7 @@ import { faPlus, faSyncAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { redux_setProfile } from 'store/profileReducer';
+import { nanoid } from 'nanoid';
 
 export default function CreateProfile({ userCred, userObj, isNoProfileUser }) {
   const navigate = useNavigate();
@@ -54,7 +54,7 @@ export default function CreateProfile({ userCred, userObj, isNoProfileUser }) {
     } else {
       let attachmentUrl = '';
       if (attachment !== '') {
-        const attachmentRef = ref(storageService, `${uid}/${v4()}`);
+        const attachmentRef = ref(storageService, `${uid}/${nanoid()}`);
         const response = await uploadString(
           attachmentRef,
           attachment,

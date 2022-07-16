@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { dbService, storageService } from 'fbase';
-import { v4 } from 'uuid';
 import { doc, updateDoc } from '@firebase/firestore';
 import {
   ref,
@@ -13,6 +12,7 @@ import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { redux_setProfile } from 'store/profileReducer';
+import { nanoid } from 'nanoid';
 
 export default function EditProfile({ userObj, profileObj }) {
   const navigate = useNavigate();
@@ -55,7 +55,10 @@ export default function EditProfile({ userObj, profileObj }) {
       if (attachment !== attachmentUrl) {
         const oldAttachmentRef = ref(storageService, profileObj.attachmentUrl);
         await deleteObject(oldAttachmentRef);
-        const newAttachmentRef = ref(storageService, `${userObj.uid}/${v4()}`);
+        const newAttachmentRef = ref(
+          storageService,
+          `${userObj.uid}/${nanoid()}`
+        );
         const response = await uploadString(
           newAttachmentRef,
           attachment,
