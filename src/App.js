@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AppRouter from 'Router'; // 내 router
 import { authService, dbService } from 'fbase';
 import { setPersistence, browserSessionPersistence } from '@firebase/auth';
-import { doc, getDoc } from '@firebase/firestore';
+import { doc, onSnapshot } from '@firebase/firestore';
 import { useDispatch } from 'react-redux';
 import { redux_setProfile } from 'store/profileReducer'; // 내 reducer의 action function
 
@@ -16,10 +16,9 @@ export default function App() {
 
   const callProfile = async (user) => {
     const docRef = doc(dbService, 'profiles', user.uid);
-    const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-      redux_setProfileObj(docSnap.data());
-    }
+    onSnapshot(docRef, (snapshot) => {
+      redux_setProfileObj(snapshot.data());
+    });
   };
 
   useEffect(() => {
