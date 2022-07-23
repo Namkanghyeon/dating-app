@@ -7,7 +7,6 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 export default function Profile({
   userObj,
-  // myProfileObj,
   yourProfileObj,
   matchMode,
 }) {

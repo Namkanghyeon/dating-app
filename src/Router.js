@@ -41,9 +41,7 @@ const AppRouter = ({ userObj }) => {
         <Route path="/signup" element={commonStyle(<SignUp />)} />
         <Route
           path="/create"
-          element={commonStyle(
-            <CreateProfile userObj={userObj} isNoProfileUser={true} />
-          )}
+          element={commonStyle(<CreateProfile userObj={userObj} />)}
         />
         <Route
           path="/edit"

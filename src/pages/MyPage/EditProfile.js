@@ -13,8 +13,10 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { redux_setProfile } from 'store/profileReducer';
 import { nanoid } from 'nanoid';
+import AuthTest from 'utils/authTest';
 
 export default function EditProfile({ userObj, profileObj }) {
+  AuthTest();
   const navigate = useNavigate();
 
   const [name, setName] = useState('');

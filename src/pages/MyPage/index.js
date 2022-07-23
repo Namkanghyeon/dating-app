@@ -1,8 +1,10 @@
 import React from 'react';
 import { authService } from 'fbase';
 import { useNavigate } from 'react-router-dom';
+import AuthTest from 'utils/authTest';
 
 export default function MyPage() {
+  AuthTest();
   const navigate = useNavigate();
 
   const onClick = (e) => {

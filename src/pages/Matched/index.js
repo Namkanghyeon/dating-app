@@ -9,8 +9,10 @@ import {
 } from '@firebase/firestore';
 import { useSelector, shallowEqual } from 'react-redux';
 import Profile from 'components/Profile';
+import AuthTest from 'utils/authTest';
 
 export default function Matched({ userObj }) {
+  AuthTest();
   const [matches, setMatches] = useState([]);
 
   const { profileObj } = useSelector(
@@ -21,7 +23,11 @@ export default function Matched({ userObj }) {
   );
 
   useEffect(() => {
-    if (profileObj.matchedPartners.length !== 0) {
+    if (
+      profileObj &&
+      Object.keys(profileObj).length &&
+      profileObj.matchedPartners.length !== 0
+    ) {
       const myMatchedPartners = profileObj.matchedPartners;
       let myMatchedPartnersIds = [];
       for (let myMatchedPartner of myMatchedPartners) {

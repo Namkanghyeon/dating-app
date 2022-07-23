@@ -8,8 +8,10 @@ import {
 } from '@firebase/auth';
 import { doc, deleteDoc } from '@firebase/firestore';
 import { ref, deleteObject } from '@firebase/storage';
+import AuthTest from 'utils/authTest';
 
 export default function DeleteAccount({ userObj, profileObj }) {
+  AuthTest();
   const navigate = useNavigate();
 
   const [reLogin, setReLogin] = useState(false);

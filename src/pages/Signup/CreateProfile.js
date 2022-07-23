@@ -8,11 +8,12 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { redux_setProfile } from 'store/profileReducer';
 import { nanoid } from 'nanoid';
+import AuthTest from 'utils/authTest';
 
-export default function CreateProfile({ userCred, userObj, isNoProfileUser }) {
+export default function CreateProfile({ userObj }) {
+  AuthTest();
   const navigate = useNavigate();
 
-  const [uid, setUid] = useState('');
   const [name, setName] = useState('');
   const [gender, setGender] = useState('');
   const [age, setAge] = useState('20');
@@ -25,14 +26,6 @@ export default function CreateProfile({ userCred, userObj, isNoProfileUser }) {
   const dispatch = useDispatch();
   const redux_setProfileObj = (profileObj) =>
     dispatch(redux_setProfile(profileObj));
-
-  useEffect(() => {
-    if (isNoProfileUser) {
-      setUid(userObj.uid);
-    } else {
-      setUid(userCred.user.uid);
-    }
-  }, []);
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -54,7 +47,7 @@ export default function CreateProfile({ userCred, userObj, isNoProfileUser }) {
     } else {
       let attachmentUrl = '';
       if (attachment !== '') {
-        const attachmentRef = ref(storageService, `${uid}/${nanoid()}`);
+        const attachmentRef = ref(storageService, `${userObj.uid}/${nanoid()}`);
         const response = await uploadString(
           attachmentRef,
           attachment,
@@ -77,9 +70,8 @@ export default function CreateProfile({ userCred, userObj, isNoProfileUser }) {
         matchedPartners: [],
       };
       redux_setProfileObj(newProfileObj);
-      await setDoc(doc(dbService, 'profiles', uid), newProfileObj);
+      await setDoc(doc(dbService, 'profiles', userObj.uid), newProfileObj);
       setAttachment('');
-      // fileInput.current.value = "";
       navigate('/home');
     }
   };
