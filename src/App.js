@@ -16,12 +16,14 @@ export default function App() {
 
   const callProfile = (user) => {
     const docRef = doc(dbService, 'profiles', user.uid);
-    onSnapshot(docRef, (snapshot) => {
+    const unsubscribe = onSnapshot(docRef, (snapshot) => {
       redux_setProfileObj(snapshot.data()); // 회원가입 후 프로필 생성 없으면 undefined가 저장됨
     });
+    return unsubscribe;
   };
 
   useEffect(() => {
+    let unsubscribe = null;
     setPersistence(authService, browserSessionPersistence); // 세션 종료 시 인증 해제 (로그 아웃)
     authService.onAuthStateChanged((user) => {
       //새로고침하면 다시 호출됨
@@ -30,12 +32,17 @@ export default function App() {
           displayName: user.displayName,
           uid: user.uid,
         });
-        callProfile(user);
+        unsubscribe = callProfile(user);
       } else {
         setUserObj(null);
       }
       setReady(true);
     });
+    if (unsubscribe) {
+      return () => {
+        unsubscribe();
+      };
+    }
   }, []);
 
   return (

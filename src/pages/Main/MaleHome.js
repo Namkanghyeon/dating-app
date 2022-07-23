@@ -12,13 +12,17 @@ export default function MaleHome({ userObj }) {
       where('gender', '==', 'Female'),
       where('liking', 'array-contains', userObj.uid)
     );
-    onSnapshot(q, (snapshot) => {
+    const unsubscribe = onSnapshot(q, (snapshot) => {
       const femaleProfileArray = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
       setFemaleProfileObjs(femaleProfileArray);
     });
+
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   return (

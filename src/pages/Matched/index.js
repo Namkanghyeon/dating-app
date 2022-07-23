@@ -23,6 +23,7 @@ export default function Matched({ userObj }) {
   );
 
   useEffect(() => {
+    let unsubscribe = null;
     if (
       profileObj &&
       Object.keys(profileObj).length &&
@@ -33,13 +34,12 @@ export default function Matched({ userObj }) {
       for (let myMatchedPartner of myMatchedPartners) {
         myMatchedPartnersIds.push(myMatchedPartner.id);
       }
-
       if (myMatchedPartnersIds.length !== 0) {
         const q = query(
           collection(dbService, 'profiles'),
           where(documentId(), 'in', myMatchedPartnersIds)
         );
-        onSnapshot(q, (snapshot) => {
+        unsubscribe = onSnapshot(q, (snapshot) => {
           const matchArray = snapshot.docs.map((doc) => ({
             id: doc.id,
             ...doc.data(),
@@ -47,6 +47,11 @@ export default function Matched({ userObj }) {
           setMatches(matchArray);
         });
       }
+    }
+    if (unsubscribe) {
+      return () => {
+        unsubscribe();
+      };
     }
   }, [profileObj]);
 

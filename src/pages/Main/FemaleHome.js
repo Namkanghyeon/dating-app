@@ -11,13 +11,16 @@ export default function FemaleHome({ userObj }) {
       collection(dbService, 'profiles'),
       where('gender', '==', 'Male')
     );
-    onSnapshot(q, (snapshot) => {
+    const unsubscribe = onSnapshot(q, (snapshot) => {
       const maleProfileArray = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
       setMaleProfileObjs(maleProfileArray);
     });
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   return (
