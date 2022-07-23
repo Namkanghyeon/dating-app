@@ -23,7 +23,7 @@ export default function MaleHome({ userObj }) {
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [userObj]);
 
   return (
     <div>

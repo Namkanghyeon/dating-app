@@ -5,11 +5,7 @@ import { useSelector, shallowEqual } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
-export default function Profile({
-  userObj,
-  yourProfileObj,
-  matchMode,
-}) {
+export default function Profile({ userObj, yourProfileObj, matchMode }) {
   const [detailMode, setDetailMode] = useState(false);
   const [like, setLike] = useState(false);
   const [ok, setOk] = useState(false);
@@ -42,7 +38,7 @@ export default function Profile({
         }
       }
     });
-  }, [profileObj, yourProfileObj]);
+  }, [userObj, profileObj, yourProfileObj]);
 
   const onLikeClick = async (event) => {
     event.preventDefault();
