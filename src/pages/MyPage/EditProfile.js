@@ -32,7 +32,7 @@ export default function EditProfile({ userObj, profileObj }) {
       setKakaoTalkId(profileObj.kakaoTalkId);
       setAttachment(profileObj.attachmentUrl);
     }
-  }, []);
+  }, [profileObj]);
 
   const dispatch = useDispatch();
   const redux_setProfileObj = (_profileObj) =>
