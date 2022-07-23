@@ -1,6 +1,6 @@
 import { authService } from 'fbase';
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from '@firebase/auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSeedling } from '@fortawesome/free-solid-svg-icons';
@@ -40,6 +40,10 @@ export default function LogIn() {
           );
         }
       });
+  };
+
+  const onSignUp = () => {
+    navigate('/signup');
   };
 
   useEffect(() => {
@@ -83,8 +87,8 @@ export default function LogIn() {
         />
       </form>
       <form className="signUp">
-        <button className="signUpButton">
-          <Link to="/signup">회원가입</Link>
+        <button className="signUpButton" onClick={onSignUp}>
+          회원가입
         </button>
       </form>
     </div>
