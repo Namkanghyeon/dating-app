@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, shallowEqual } from 'react-redux';
 import FemaleHome from 'pages/Main/FemaleHome';
 import MaleHome from 'pages/Main/MaleHome';
@@ -14,16 +14,24 @@ export default function Home({ userObj }) {
     shallowEqual
   );
 
-  if (!Object.keys(profileObj).length) {
-    navigate('/create');
-  }
+  useEffect(() => {
+    if (profileObj === undefined) { // 회원가입 후 프로필 생성 안하면 undefined로 설정됨
+      navigate('/create');
+    }
+  }, [profileObj]);
 
   return (
     <div className="container">
-      {profileObj.gender === 'Female' ? (
-        <FemaleHome userObj={userObj} />
+      {profileObj && Object.keys(profileObj).length ? (
+        <>
+          {profileObj.gender === 'Female' ? (
+            <FemaleHome userObj={userObj} />
+          ) : (
+            <MaleHome userObj={userObj} />
+          )}
+        </>
       ) : (
-        <MaleHome userObj={userObj} />
+        <></>
       )}
     </div>
   );

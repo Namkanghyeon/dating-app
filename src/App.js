@@ -17,7 +17,7 @@ export default function App() {
   const callProfile = (user) => {
     const docRef = doc(dbService, 'profiles', user.uid);
     onSnapshot(docRef, (snapshot) => {
-      redux_setProfileObj(snapshot.data());
+      redux_setProfileObj(snapshot.data()); // 회원가입 후 프로필 생성 없으면 undefined가 저장됨
     });
   };
 
