@@ -23,26 +23,27 @@ export default function App() {
   };
 
   useEffect(() => {
-    let unsubscribe = null;
+    let profileUnsubscribe = null;
     setPersistence(authService, browserSessionPersistence); // 세션 종료 시 인증 해제 (로그 아웃)
-    authService.onAuthStateChanged((user) => {
+    const unsubscribe = authService.onAuthStateChanged((user) => {
       //새로고침하면 다시 호출됨
       if (user) {
         setUserObj({
           displayName: user.displayName,
           uid: user.uid,
         });
-        unsubscribe = callProfile(user);
+        profileUnsubscribe = callProfile(user);
       } else {
         setUserObj(null);
       }
       setReady(true);
     });
-    if (unsubscribe) {
-      return () => {
-        unsubscribe();
-      };
-    }
+    return () => {
+      if (profileUnsubscribe) {
+        profileUnsubscribe();
+      }
+      unsubscribe();
+    };
   }, []);
 
   return (
