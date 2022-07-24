@@ -46,7 +46,6 @@ export default function DeleteAccount({ userObj, profileObj }) {
           navigate('/');
         })
         .catch((e) => {
-          console.log(e.code);
           if (
             e.code === 'auth/user-mismatch' ||
             e.code === 'auth/wrong-password'
