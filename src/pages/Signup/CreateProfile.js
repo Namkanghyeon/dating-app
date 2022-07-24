@@ -1,11 +1,11 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { dbService, storageService } from 'fbase';
 import { doc, setDoc } from '@firebase/firestore';
 import { ref, uploadString, getDownloadURL } from '@firebase/storage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faSyncAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { redux_setProfile } from 'store/profileReducer';
 import { nanoid } from 'nanoid';
 import AuthTest from 'utils/authTest';
@@ -26,6 +26,20 @@ export default function CreateProfile({ userObj }) {
   const dispatch = useDispatch();
   const redux_setProfileObj = (profileObj) =>
     dispatch(redux_setProfile(profileObj));
+
+  const { profileObj } = useSelector(
+    (state) => ({
+      profileObj: state.profileReducer.profileObj,
+    }),
+    shallowEqual
+  );
+
+  useEffect(() => {
+    // 로그인 직후 잠깐 undefined가 들어오는 경우가 있음
+    if (profileObj) {
+      navigate('/home');
+    }
+  }, [profileObj]);
 
   const onSubmit = async (event) => {
     event.preventDefault();
